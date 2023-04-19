@@ -1,4 +1,4 @@
-# スタステ (Study Station)
+# Study station
 
 ## サイト概要
 ### サイトテーマ
