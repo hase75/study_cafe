@@ -1,0 +1,2 @@
+class SpaceTag < ApplicationRecord
+end
