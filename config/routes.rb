@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
+  scope module: :public do
+    root to: 'homes#top'
+  end
+  
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }

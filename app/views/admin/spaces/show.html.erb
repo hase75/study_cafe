@@ -20,10 +20,6 @@
             <td><%= @space.introduction %></td>
           </tr>
           <tr>
-            <td>郵便番号</td>
-            <td><%= @space.postal_code %></td>
-          </tr>
-          <tr>
             <td>住所</td>
             <td><%= @space.address %></td>
           </tr>
@@ -50,6 +46,6 @@
     </div>
   </div>
   <div class="row">
-    <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success mx-auto" %>
+    <%= link_to "編集する", edit_admin_space_path, class: "btn btn-success mx-auto" %>
   </div>
 </div>
