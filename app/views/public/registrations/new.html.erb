@@ -4,7 +4,7 @@
   <%= render "public/shared/error_messages", resource: resource %>
   
   <div class="field">
-    <%= f.label :name, "氏名" %><br />
+    <%= f.label :name, "ユーザー名" %><br />
     <%= f.text_field :name %>
   </div>
   
@@ -19,6 +19,11 @@
     <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password_confirmation, "確認のため、再入力してください" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">

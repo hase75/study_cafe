@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     root to: 'customers#index'
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :reviews, only: [:index, :show, :destroy]
   end
   
 
