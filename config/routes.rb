@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: 'homes#top'
+    get 'customers/my_page',to: 'customers#show'
+    get 'customers/infomation/edit',to: 'customers#edit'
+    patch 'customers/information',to: 'customers#update'
+    get 'customers/confirm',to: 'customers#confirm'
+    patch 'customers/withdraw',to: 'customers#withdraw'
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -14,8 +19,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    root to: 'homes#top'
+    root to: 'customers#index'
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   
 
