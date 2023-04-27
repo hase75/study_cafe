@@ -11,21 +11,14 @@
           <th>投稿日時</th>
           <th>ユーザー名</th>
           <th>評価</th>
-          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
-      <% @customers.each do |customer| %>
+      <% @reviews.each do |review| %>
         <tr>
-          <td><%= customer.id %></td>
-          <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
-          <td><%= customer.email %></td>
-          <td><% if customer.is_deleted? %>
-                <span class="text-secondary">退会</span>
-              <% else %>
-                <span class="text-success">有効</span>
-              <% end %>
-          </td>
+          <td><%= review.created_at %></td>
+          <td><%= link_to review.customer.name, admin_review_path(customer.id) %></td>
+          <td><%= review.rating %></td>
         </tr>
       <% end %>
       </tbody>
