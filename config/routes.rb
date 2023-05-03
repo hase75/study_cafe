@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :destroy]
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
   
 

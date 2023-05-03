@@ -23,6 +23,9 @@
           <%= link_to "レビュー一覧", admin_reviews_path %>
         </li>
         <li>
+          <%= link_to "タグ一覧", admin_tags_path %>
+        </li>
+        <li>
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
         </li>
       <% elsif customer_signed_in? %>
