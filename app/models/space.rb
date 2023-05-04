@@ -1,4 +1,8 @@
 class Space < ApplicationRecord
+  
+  has_many :favorites, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :space_tags, dependent: :destroy
 
   has_one_attached :image
 

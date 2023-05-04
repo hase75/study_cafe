@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'spaces/index'
+    get 'spaces/show'
+  end
   devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
   
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     root to: 'homes#top'
-    get 'customers/my_page',to: 'customers#show'
-    get 'customers/infomation/edit',to: 'customers#edit'
-    patch 'customers/information',to: 'customers#update'
-    get 'customers/confirm',to: 'customers#confirm'
-    patch 'customers/withdraw',to: 'customers#withdraw'
+    get 'customers/my_page', to: 'customers#show'
+    get 'customers/infomation/edit', to: 'customers#edit'
+    patch 'customers/information', to: 'customers#update'
+    get 'customers/confirm', to: 'customers#confirm'
+    patch 'customers/withdraw', to: 'customers#withdraw'
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
