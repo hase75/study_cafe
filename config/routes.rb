@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'spaces/index'
-    get 'spaces/show'
-  end
   devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -20,6 +16,7 @@ Rails.application.routes.draw do
     patch 'customers/information', to: 'customers#update'
     get 'customers/confirm', to: 'customers#confirm'
     patch 'customers/withdraw', to: 'customers#withdraw'
+    resources :spaces, only: [:index, :show]
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
