@@ -5,32 +5,32 @@
      <h3 class="border rounded shadow-sm font-weight-bold px-3">店舗一覧</h3>
     </div>
     
-      <div class="columns is-centered my-5">
-        <div class="column is-5">
-          <% @spaces.each do |space| %>
-            <div class="card mb-6">
-              <header class="card-header">
-                <p class="card-header-title">
-                  <%= space.name %>
-                </p>
-              </header>
-              <div class="card-content">
-                <div class="content">
-                  <div class="content average-score">
-                    <div class="star-rating mb-2">
-                      <div class="star-rating-front" style="width: %">★★★★★</div>
-                      <div class="star-rating-back">★★★★★</div>
-                    </div>
-                    <div class="average-score-display ml-3 pt-2">
-                    </div>
+    <div class="columns is-centered">
+      <div class="column is-5 mt-5">
+        <% @spaces.each do |space| %>
+          <div class="card mb-6">
+            <header class="card-header">
+              <p class="card-header-title">
+                <%= space.name %>
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <div class="content average-score">
+                  <div class="star-rating mb-2">
+                    <div class="star-rating-front" style="width: %">★★★★★</div>
+                    <div class="star-rating-back">★★★★★</div>
+                  </div>
+                  <div class="average-score-display ml-3 pt-2">
                   </div>
                 </div>
               </div>
-              <footer class="card-footer">
-              </footer>
             </div>
-          <% end %>
-        </div>
+            <footer class="card-footer">
+            </footer>
+          </div>
+        <% end %>
       </div>
+    </div>
   </div>
 </section>

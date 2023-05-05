@@ -1,7 +1,12 @@
 <section class="section mt-6">
-  <div class="container">
+  <div class="container my-5">
+    
+    <div class="row">
+     <h3 class="border rounded shadow-sm font-weight-bold px-3">店舗詳細</h3>
+    </div>
+    
     <div class="columns is-centered">
-      <div class="column is-5">
+      <div class="column is-5 mt-5">
         <div class="card mb-6">
           <header class="card-header">
             <p class="card-header-title">
@@ -20,7 +25,7 @@
             </div>
           </div>
         </div>
-        <%= render 'reviews/form', review: @review, space: @space %>
+        <%= render 'public/reviews/form', review: @review, space: @space %>
       </div>
     </div>
   </div>
