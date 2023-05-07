@@ -1,3 +1,4 @@
+console.log('hello')
 /*!
  * Raty - A Star Rating Plugin
  *

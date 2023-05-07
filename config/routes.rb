@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'customers/confirm', to: 'customers#confirm'
     patch 'customers/withdraw', to: 'customers#withdraw'
     resources :spaces, only: [:index, :show]
-    resources :reviews, only: [:index, :create]
+    resources :reviews, only: [:index, :create, :update]
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

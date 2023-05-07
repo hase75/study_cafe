@@ -7,7 +7,7 @@
 	</div>
 
 	<%= form_with model: @customer, url:customers_information_path do |f| %>
-
+    <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group mt-3">
     <div class="offset-1">
       <div class="form-group mt-3">
