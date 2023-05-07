@@ -11,7 +11,7 @@
 
   <div class="form-group row" id="rating">
     <%= f.label :rating, "評価", class:"col-md-3 col-form-label" %>
-    <%= f.hidden_field :rating, id: :review_star %>
+    <%= f.hidden_field :rating %>
   </div>
 
   <%= f.hidden_field :space_id, value: space.id %>

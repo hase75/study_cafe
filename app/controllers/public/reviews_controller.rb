@@ -7,10 +7,10 @@ class Public::ReviewsController < ApplicationController
     @review = current_customer.reviews.build(review_params)
     @space = @review.space
     if @review.save
-      flash[:notice] = "success"
+      flash[:notice] = "登録しました"
       redirect_to @space
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "登録に失敗しました"
       render 'public/spaces/show'
     end
   end
@@ -19,10 +19,10 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @space = @review.space
     if @review.update(review_params)
-      flash[:notice] = "success"
+      flash[:notice] = "更新しました"
       redirect_to @space
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "更新に失敗しました"
       render 'public/spaces/show'
     end
   end
