@@ -35,14 +35,29 @@
       </table>
     </div>
   </div>
+
+  <div>
+    <%= link_to 'レビューを投稿する', new_review_path(space_id: @space.id) %>
+  </div>
 </div>
 
 
 
+<% @reviews.each do |review|%>
 
-
-
-
-
-
-<%= render "public/spaces/form", space: @space, review: @review %>
+  <div class=card>
+    <p>コメント:<%= review.comment %></p>
+    <p>評価 :<%= review.rating %>点</p>
+    <div id="rating-rate<%= review.id %>"></div>    
+    <script>
+      $('#rating-rate<%= review.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= review.rating || 0 %>,
+      });
+    </script>
+  </div>
+<% end %>
