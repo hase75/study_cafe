@@ -2,6 +2,7 @@ class Public::SpacesController < ApplicationController
   
   def index
     @spaces = Space.all
+    @reviews = Review.all
   end
 
   def show

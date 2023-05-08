@@ -1,0 +1,56 @@
+<div class="container my-5">
+  
+  <div class="row">
+    <h3 class="border rounded shadow-sm font-weight-bold px-3">店舗一覧</h3>
+  </div>
+  
+  <div class="row mt-5">
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr class="bg-secondary text-light">
+        　<th></th>
+          <th>店名</th>
+          <th>住所</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @spaces.each do |space| %>
+        <tr>
+          <td><%= image_tag space.get_image, size: '200x200' %></td>  
+          <td><%= link_to space.name,space_path(space.id) %></td>
+          <td><%= space.address %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">
+    <div class="row">
+     <div class="col-md-4 offset-md-4 py-2  mt-5">
+      
+     </div>
+    </div>
+  </div>
+</div>
+
+
+<%#= link_to '口コミを投稿する', space_path(space.id) %>
+<% @reviews.each do |review|%>
+
+  <div class=card>
+    <p>コメント:<%= review.comment %></p>
+    <p>評価 :<%= review.rating %>点</p>
+    <div id="rating-rate<%= review.id %>"></div>    
+    <script>
+      $('#rating-rate<%= review.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= review.rating || 0 %>,
+      });
+    </script>
+  </div>
+<% end %>

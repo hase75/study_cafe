@@ -32,10 +32,10 @@
             <td><%= @space.website %></td>
           </tr>
           <tr>
-            <td>販売ステータス</td>
+            <td>ステータス</td>
             <td>
               <% if @space.is_active? %>
-                <span class="text-success">販売中</span>
+                <span class="text-success">有効</span>
               <% else %>
                 <span class="text-secondary">閉店</span>
               <% end %>
