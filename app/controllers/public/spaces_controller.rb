@@ -10,6 +10,7 @@ class Public::SpacesController < ApplicationController
     #@review = current_customer.reviews.find_or_initialize_by(space_id: @space.id)
   end
   
+  
   private
 
   def space_params

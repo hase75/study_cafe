@@ -37,7 +37,7 @@
   </div>
 
   <div>
-    <%= link_to 'レビューを投稿する', new_review_path(space_id: @space.id) %>
+    <%= link_to 'レビューを投稿・編集する', new_review_path(space_id: @space.id) %>
   </div>
 </div>
 
@@ -46,8 +46,10 @@
 <% @reviews.each do |review|%>
 
   <div class=card>
+    <p>ユーザー:<%= review.customer.name %></p>
     <p>コメント:<%= review.comment %></p>
     <p>評価 :<%= review.rating %>点</p>
+
     <div id="rating-rate<%= review.id %>"></div>    
     <script>
       $('#rating-rate<%= review.id%>').raty({
@@ -59,5 +61,10 @@
         score: <%= review.rating || 0 %>,
       });
     </script>
+    
+    <% if customer_signed_in? && current_customer.id == review.customer_id %>
+      <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' } %>
+    <% end %>
+  
   </div>
 <% end %>

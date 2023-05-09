@@ -1,8 +1,5 @@
 class Public::ReviewsController < ApplicationController
 
-  def index
-  end
-
   def new
     @space_id = params[:space_id]
     review = Review.where(customer_id: current_customer.id, space_id: @space_id)
@@ -36,9 +33,18 @@ class Public::ReviewsController < ApplicationController
       render 'public/spaces/show'
     end
   end
+  
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to review_path
+  end
+  
+  
+  private
 
   def review_params
-    params.require(:review).permit(:comment, :rating, :space_id)
+    params.require(:review).permit(:comment, :rating, :space_id, :customer_id)
   end
 end
 
