@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     root to: 'customers#index'
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :reviews, only: [:index, :show, :destroy]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
