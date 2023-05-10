@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td>営業時間</td>
-            <td><%= @space.start_time %>〜<%= @space.end_time %></td>
+            <td><%= @space.start_time.strftime('%H:%M') %>〜<%= @space.end_time.strftime('%H:%M') %></td>
           </tr>
           <tr>
             <td>個室</td>

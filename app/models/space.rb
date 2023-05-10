@@ -5,7 +5,12 @@ class Space < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :space_tags, dependent: :destroy
 
-
+  def average_rating
+    reviews.average(:rating).to_f
+  end
+  
+  
+  
   has_one_attached :image
 
   def get_image

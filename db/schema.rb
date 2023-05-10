@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2023_05_10_072156) do
   create_table "reviews", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "space_id", null: false
-    t.integer "rating", default: 0, null: false
+    t.float "rating", default: 0.0, null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td>営業時間</td>
-            <td><%= @space.start_time %>〜<%= @space.end_time %></td>
+            <td><%= @space.start_time.strftime('%H:%M') %>〜<%= @space.end_time.strftime('%H:%M') %></td>
           </tr>
           <tr>
             <td>個室</td>
@@ -98,9 +98,10 @@
         size      : 36,
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
-        half      : false,
+        starHalf  : '<%= asset_path('star-half.png') %>',
         readOnly: true,
         score: <%= review.rating || 0 %>,
+        half: true
       });
     </script>
     
