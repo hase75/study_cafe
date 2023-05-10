@@ -33,14 +33,14 @@ class Public::ReviewsController < ApplicationController
       render 'public/spaces/show'
     end
   end
-  
+
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to review_path
+    redirect_to space_path(review.space.id)
   end
-  
-  
+
+
   private
 
   def review_params

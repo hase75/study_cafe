@@ -28,6 +28,48 @@
             <td><%= @space.telephone_number %></td>
           </tr>
           <tr>
+            <td>最寄り駅</td>
+            <td><%= @space.station %></td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td><%= @space.start_time %>〜<%= @space.end_time %></td>
+          </tr>
+          <tr>
+            <td>個室</td>
+            <td>
+              <% if @space.private_room? %>
+                <span>有</span>
+              <% else %>
+                <span>無</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>喫煙・禁煙</td>
+            <td><%= @space.smoking %></td>
+          </tr>
+          <tr>
+            <td>Wi-Fi</td>
+            <td>
+              <% if @space.wifi? %>
+                <span>有</span>
+              <% else %>
+                <span>無</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>コンセント</td>
+            <td>
+              <% if @space.outlet? %>
+                <span>有</span>
+              <% else %>
+                <span>無</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
             <td>WEBサイトURL</td>
             <td><%= @space.website %></td>
           </tr>

@@ -29,11 +29,45 @@
           <%= f.text_field :telephone_number, class: "form-control col-sm-8" %>
         </div>
         <div class="form-group row">
+          <%= f.label :station, "最寄り駅", class: "col-sm-4" %>
+          <%= f.text_field :station, class: "form-control col-sm-8" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :business_hours, "営業時間", class: "col-sm-4" %>
+          <%= f.time_select :start_time, { minute_step: 15 } %>
+          <%= f.time_select :end_time, { minute_step: 15 } %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :private_room, "個室", class: "col-sm-4" %>
+          <%= f.radio_button :private_room, true %>
+          <%= f.label :private_room, '有' %>
+          <%= f.radio_button :private_room, false %>
+          <%= f.label :private_room, '無' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :smoking, "喫煙・禁煙", class: "col-sm-4" %>
+          <%= f.text_field :smoking, class: "form-control col-sm-8" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :wifi, "Wi-Fi", class: "col-sm-4" %>
+          <%= f.radio_button :wifi, true %>
+          <%= f.label :wifi, '有' %>
+          <%= f.radio_button :iwifi, false %>
+          <%= f.label :wifi, '無' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :outlet, "コンセント", class: "col-sm-4" %>
+          <%= f.radio_button :outlet, true %>
+          <%= f.label :outlet, '有' %>
+          <%= f.radio_button :outlet, false %>
+          <%= f.label :outlet, '無' %>
+        </div>
+        <div class="form-group row">
           <%= f.label :website, "WEBサイトURL", class: "col-sm-4" %>
           <%= f.text_field :website, class: "form-control col-sm-8" %>
         </div>
         <div class="form-group row">
-          <%= f.label :is_active, "販売ステータス", class: "col-sm-4" %>
+          <%= f.label :is_active, "店舗ステータス", class: "col-sm-4" %>
           <%= f.radio_button :is_active, true %>
           <%= f.label :is_active, '有効' %>
           <%= f.radio_button :is_active, false %>
