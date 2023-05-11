@@ -11,7 +11,7 @@ class Space < ApplicationRecord
   
   def self.search(keyword)
     if keyword
-      Space.where(['name LIKE ?', "%#{keyword}%"])
+      Space.where(["name LIKE(?) OR address LIKE(?) OR station LIKE(?) OR private_room LIKE(?) OR smoking LIKE(?) OR wifi LIKE(?) OR outlet LIKE(?)", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
     else
       Space.all
     end
