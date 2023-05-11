@@ -9,7 +9,13 @@ class Space < ApplicationRecord
     reviews.average(:rating).to_f
   end
   
-  
+  def self.search(keyword)
+    if keyword
+      Space.where(['name LIKE ?', "%#{keyword}%"])
+    else
+      Space.all
+    end
+  end
   
   has_one_attached :image
 

@@ -1,7 +1,7 @@
 class Public::SpacesController < ApplicationController
   
   def index
-    @spaces = Space.all
+    @spaces = Space.search(params[:keyword])
   end
 
   def show
