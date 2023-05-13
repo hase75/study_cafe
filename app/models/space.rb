@@ -26,5 +26,16 @@ class Space < ApplicationRecord
     end
     image
   end
+  
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "created_at", "end_time", "genre_id", "id", "introduction", "is_active", "latitude", "longitude", "name", "outlet", "private_room", "smoking", "start_time", "station", "telephone_number", "updated_at", "website", "wifi"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["favorites", "genre", "image_attachment", "image_blob", "reviews", "space_tags"]
+  end
+  
+  
 
 end

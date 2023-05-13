@@ -1,114 +1,90 @@
-<%= form_with url: spaces_path, local: true, method: :get do |f| %>
-  
+<%= search_form_for q, url: spaces_path do |f| %>
+
   <div class="searches-body">
     <div class="search-body__subtitle">詳細検索</div>
+
+    <!-- キーワード検索 -->
     <div class="form-group">
       <label>
         <i class="fas fa-plus icon"></i>
-        <span>キーワードを追加する</span>
+        <span>ジャンルから探す</span>
       </label>
-      <%= f.search_field :name_cont, class: "input-default", placeholder: '例）値下げ' %>
+      <%= f.search_field :genre_name_cont, class: "input-default", placeholder: '例）カフェ' %>
     </div>
+
+    <!-- 駅名検索 -->
     <div class="form-group">
       <label>
         <i class="fas fa-tag icon"></i>
-        <span>ブランド名から探す</span>
+        <span>駅名から探す</span>
       </label>
-      <%= f.search_field :brand_brand_cont, class: "input-default", placeholder: '例）シャネル' %>
+      <%= f.search_field :station_cont, class: "input-default", placeholder: '例）新宿駅' %>
     </div>
+
+    <!-- 時間検索 -->
     <div class="form-group">
       <label>
         <i class="fas fa-coins icon"></i>
-        <span>価格</span>
+        <span>営業時間</span>
       </label>
       <div class="form_money">
-        <%= f.number_field :price_gteq, placeholder: "¥ Min" %>
-        <span class="form_money__fromTo">~</span>
-        <%= f.number_field :price_lteq, placeholder: "¥ Max" %>
+        <%= f.time_select :start_time_eq, {minute_step: 15, default: {hour: 0, minute: 0}} %>
       </div>
     </div>
-  </div>
-  
-  <!-- 絞り込み検索（商品の状態） -->
-  <div class="form-group">
-    <label>
-      <i class="fas fa-star icon"></i>
-      <span>商品の状態</span>
-    </label>
-    <div class="checkbox">
-      <div class="checkbox-default">
-        <label>
-          <input type="checkbox">
-          すべて
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "1", nil %>
-          新品、未使用
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "2", nil %>
-          未使用に近い
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "3", nil %>
-          目立った傷や汚れなし
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "4", nil %>
-          やや傷や汚れあり
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "5", nil %>
-          傷や汚れあり
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :item_condition_id_in , {multiple: true} , "6", nil %>
-          全体的に状態が悪い
-          <i class="check-icon"></i>
-        </label>
-      </div>
+
+    <!-- 絞り込み検索（店舗の設備） -->
+    <div class="form-group">
+      <label>
+        <i class="fas fa-star icon"></i>
+        <span>店舗の設備</span>
+      </label>
+      <div class="checkbox">
+        <div class="checkbox-default">
+          <label>
+            <input type="checkbox">
+            すべて
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :wifi_cont , {multiple: true} , true, false %>
+            Wi-Fi
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :outlet_cont , {multiple: true} , true, false %>
+            コンセント
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :private_room_cont , {multiple: true} , true, false %>
+            個室
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :smoking_cont , {multiple: true} , "禁煙", nil %>
+            禁煙
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :smoking_cont , {multiple: true} , "喫煙可", nil %>
+            喫煙可
+            <i class="check-icon"></i>
+          </label>
+        </div>
+    　</div>
     </div>
   </div>
-          
-    　<!-- 絞り込み検索（販売状況） -->
-  <div class="form-group">
-    <label><i class="fas fa-shopping-cart icon"></i><span>販売状況</span></label>
-    <div class="checkbox">
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :trading_status_in, { multiple: true }, "0", nil %>
-          <%= "販売中" %>
-          <i class="check-icon"></i>
-        </label>
-      </div>
-      <div class="checkbox-default">
-        <label>
-          <%= f.check_box :trading_status_in, { multiple: true }, "1", nil %>
-          <%= "売り切れ" %>
-          <i class="check-icon"></i>
-        </label>
-      </div>
-    </div>
-  </div>
-  
+
   <div class="search-done-btn">
     <%= f.button "クリア", type: "reset", class: "btn-default btn-gray" %>
     <%= f.submit "完了", class: "btn-default btn-red" %>

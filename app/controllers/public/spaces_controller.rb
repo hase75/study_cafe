@@ -1,10 +1,13 @@
 class Public::SpacesController < ApplicationController
-  
+
   def index
-    @spaces = Space.search(params[:keyword])
+    @q = Space.ransack(params[:q])
+    if params[:keyword]
+      @spaces = Space.search(params[:keyword])
+    else
+      @spaces = @q.result(distinct: true)
+    end
   end
-  
-  
 
   def show
     @space = Space.find(params[:id])
