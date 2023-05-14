@@ -11,7 +11,7 @@ class Space < ApplicationRecord
   
   def self.search(keyword)
     if keyword
-      Space.where(["name LIKE(?) OR address LIKE(?) OR station LIKE(?) OR private_room LIKE(?) OR smoking LIKE(?) OR wifi LIKE(?) OR outlet LIKE(?)", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+      Space.where(["name LIKE(?) OR address LIKE(?) OR transportation LIKE(?) ", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
     else
       Space.all
     end
@@ -29,7 +29,7 @@ class Space < ApplicationRecord
   
   
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "created_at", "end_time", "genre_id", "id", "introduction", "is_active", "latitude", "longitude", "name", "outlet", "private_room", "smoking", "start_time", "station", "telephone_number", "updated_at", "website", "wifi"]
+    ["address", "created_at", "end_time", "genre_id", "id", "introduction", "is_active", "latitude", "longitude", "name", "outlet", "private_room", "smoking", "start_time", "transportation", "parking", "telephone_number", "updated_at", "website", "wifi"]
   end
   
   def self.ransackable_associations(auth_object = nil)

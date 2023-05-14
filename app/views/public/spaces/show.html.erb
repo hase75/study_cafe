@@ -28,8 +28,8 @@
             <td><%= @space.telephone_number %></td>
           </tr>
           <tr>
-            <td>最寄り駅</td>
-            <td><%= @space.station %></td>
+            <td>交通手段</td>
+            <td><%= @space.transportation %></td>
           </tr>
           <tr>
             <td>営業時間</td>
@@ -47,9 +47,24 @@
           </tr>
           <tr>
             <td>喫煙・禁煙</td>
-            <td><%= @space.smoking %></td>
+            <td>
+              <% if @space.smoking? %>
+                <span>喫煙可</span>
+              <% else %>
+                <span>禁煙</span>
+              <% end %>
+            </td>
           </tr>
           <tr>
+            <td>駐車場</td>
+            <td>
+              <% if @space.parking? %>
+                <span>有</span>
+              <% else %>
+                <span>無</span>
+              <% end %>
+            </td>
+          </tr>
             <td>Wi-Fi</td>
             <td>
               <% if @space.wifi? %>
@@ -83,15 +98,12 @@
   </div>
 </div>
 
-
-
 <% @reviews.each do |review|%>
 
   <div class=card>
-    <p>ユーザー:<%= review.customer.name %></p>
-    <p>コメント:<%= review.comment %></p>
-    <p>評価 :<%= review.rating %>点</p>
-
+    <p><%= review.customer.name %></p>
+    <p><%= review.rating %>点</p>
+    
     <div id="rating-rate<%= review.id %>"></div>    
     <script>
       $('#rating-rate<%= review.id%>').raty({
@@ -104,6 +116,8 @@
         half: true
       });
     </script>
+    
+    <p><%= review.comment %></p>
     
     <% if customer_signed_in? && current_customer.id == review.customer_id %>
       <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' } %>

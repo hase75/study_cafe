@@ -23,7 +23,21 @@
         <tr>
           <td><%= space.id %></td>
           <td><%= link_to space.name,admin_space_path(space.id) %></td>
-          <td><%= space.address %></td>
+          <td>
+            <%= space.average_rating %>
+            <div id="rating-rate<%= space.id %>"></div>
+              <script>
+                $('#rating-rate<%= space.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf  : '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= space.average_rating || 0 %>,
+                  half: true
+                });
+              </script>
+          </td>
           <td><% if space.is_active? %>
                 <span class="text-success">有効</span>
               <% else %>

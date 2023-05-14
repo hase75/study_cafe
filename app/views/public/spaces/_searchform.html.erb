@@ -9,27 +9,16 @@
         <i class="fas fa-plus icon"></i>
         <span>ジャンルから探す</span>
       </label>
-      <%= f.search_field :genre_name_cont, class: "input-default", placeholder: '例）カフェ' %>
+      <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, { include_blank: '--選択してください--' } %>
     </div>
 
-    <!-- 駅名検索 -->
+    <!-- エリア・駅名検索 -->
     <div class="form-group">
       <label>
         <i class="fas fa-tag icon"></i>
-        <span>駅名から探す</span>
+        <span>エリア・駅名から探す</span>
       </label>
-      <%= f.search_field :station_cont, class: "input-default", placeholder: '例）新宿駅' %>
-    </div>
-
-    <!-- 時間検索 -->
-    <div class="form-group">
-      <label>
-        <i class="fas fa-coins icon"></i>
-        <span>営業時間</span>
-      </label>
-      <div class="form_money">
-        <%= f.time_select :start_time_eq, {minute_step: 15, default: {hour: 0, minute: 0}} %>
-      </div>
+      <%= f.search_field :address_or_transportation_cont, class: "input-default", placeholder: '例）東京、新宿' %>
     </div>
 
     <!-- 絞り込み検索（店舗の設備） -->
@@ -62,7 +51,7 @@
         </div>
         <div class="checkbox-default">
           <label>
-            <%= f.check_box :private_room_cont , {multiple: true} , true, false %>
+            <%= f.check_box :private_room_eq , {multiple: true} , true, false %>
             個室
             <i class="check-icon"></i>
           </label>

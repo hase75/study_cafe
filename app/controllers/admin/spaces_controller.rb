@@ -1,7 +1,7 @@
 class Admin::SpacesController < ApplicationController
   
   def index
-    @spaces = Space.all
+    @spaces = Space.search(params[:keyword])
   end
 
   def new
@@ -16,6 +16,7 @@ class Admin::SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
+    @reviews = @space.reviews
   end
 
   def edit
@@ -31,7 +32,7 @@ class Admin::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:name, :introduction, :genre_id, :address, :telephone_number, :station, :business_hours, :start_time, :end_time, :private_room, :smoking, :wifi, :outlet, :website, :is_active, :image)
+    params.require(:space).permit(:name, :introduction, :genre_id, :address, :telephone_number, :transportation, :business_hours, :start_time, :end_time, :private_room, :smoking, :parking, :wifi, :outlet, :website, :is_active, :image)
   end
   
 end

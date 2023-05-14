@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_10_072156) do
+ActiveRecord::Schema.define(version: 2023_05_14_054251) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,15 +92,24 @@ ActiveRecord::Schema.define(version: 2023_05_10_072156) do
     t.index ["space_id"], name: "index_reviews_on_space_id"
   end
 
-  create_table "space_tags", force: :cascade do |t|
-    t.integer "space_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
+  create_table "spaces", force: :cascade do |t|
+    t.string "genre_id", null: false
     t.string "name", null: false
+    t.text "introduction", null: false
+    t.string "address", null: false
+    t.string "telephone_number", null: false
+    t.string "website", null: false
+    t.string "transportation", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.boolean "private_room", default: true, null: false
+    t.boolean "smoking", default: true, null: false
+    t.boolean "parking", default: true, null: false
+    t.boolean "wifi", default: true, null: false
+    t.boolean "outlet", default: true, null: false
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
