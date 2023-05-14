@@ -30,42 +30,28 @@
       <div class="checkbox">
         <div class="checkbox-default">
           <label>
-            <input type="checkbox">
-            すべて
-            <i class="check-icon"></i>
-          </label>
-        </div>
-        <div class="checkbox-default">
-          <label>
-            <%= f.check_box :wifi_cont , {multiple: true} , true, false %>
+            <%= f.check_box :wifi_eq , {} , true, false %>
             Wi-Fi
             <i class="check-icon"></i>
           </label>
         </div>
         <div class="checkbox-default">
           <label>
-            <%= f.check_box :outlet_cont , {multiple: true} , true, false %>
+            <%= f.check_box :outlet_eq , {} , true, false %>
             コンセント
             <i class="check-icon"></i>
           </label>
         </div>
         <div class="checkbox-default">
           <label>
-            <%= f.check_box :private_room_eq , {multiple: true} , true, false %>
+            <%= f.check_box :private_room_eq , {} , true, false %>
             個室
             <i class="check-icon"></i>
           </label>
         </div>
         <div class="checkbox-default">
           <label>
-            <%= f.check_box :smoking_cont , {multiple: true} , "禁煙", nil %>
-            禁煙
-            <i class="check-icon"></i>
-          </label>
-        </div>
-        <div class="checkbox-default">
-          <label>
-            <%= f.check_box :smoking_cont , {multiple: true} , "喫煙可", nil %>
+            <%= f.check_box :smoking_eq , {} , true, false %>
             喫煙可
             <i class="check-icon"></i>
           </label>
@@ -75,7 +61,7 @@
   </div>
 
   <div class="search-done-btn">
-    <%= f.button "クリア", type: "reset", class: "btn-default btn-gray" %>
-    <%= f.submit "完了", class: "btn-default btn-red" %>
+    <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
+    <%= f.button "検索", class: "btn-default btn-primary" %>
   </div>
 <% end %>
