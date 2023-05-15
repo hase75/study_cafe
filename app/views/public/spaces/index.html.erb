@@ -35,6 +35,16 @@
                 });
               </script>
           </td>
+
+          <td>
+            <% if space.latitude.present? %>
+              <%= space.latitude %>
+            <% else %>
+              存在してない
+            <% end %>
+          </td>
+
+
         </tr>
       <% end %>
       </tbody>
@@ -44,7 +54,7 @@
   <div class="container">
     <div class="row">
      <div class="col-md-4 offset-md-4 py-2  mt-5">
-     
+
      </div>
     </div>
   </div>
@@ -53,3 +63,62 @@
 
 
 <%= render 'public/spaces/searchform', q: @q, url: spaces_path %>
+
+
+
+
+<h2>gmap</h2>
+
+<input id="address" type="textbox" >
+<input type="button" value="検索" onclick="codeAddress()">
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6761919, lng:139.6503106},
+    zoom: 10,
+  });
+
+  <% @spaces.each do |space| %>
+    <% if space.latitude.present? %>
+       marker = new google.maps.Marker({
+         position:  {lat: <%= space.latitude %>, lng:<%= space.longitude %>},
+         map: map
+       });
+    <% end %>
+  <% end %>
+}
+
+let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>

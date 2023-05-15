@@ -94,6 +94,14 @@
             <td><%= @space.website %></td>
           </tr>
           <tr>
+            <td>緯度</td>
+            <td><%= @space.latitude %></td>
+          </tr>
+          <tr>
+            <td>経度</td>
+            <td><%= @space.longitude %></td>
+          </tr>
+          <tr>
             <td>ステータス</td>
             <td>
               <% if @space.is_active? %>

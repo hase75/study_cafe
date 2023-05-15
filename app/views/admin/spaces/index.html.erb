@@ -14,6 +14,7 @@
         <tr class="bg-secondary text-light">
           <th>店舗ID</th>
           <th>店名</th>
+          <th>ジャンル</th>
           <th>評価</th>
           <th>ステータス</th>
         </tr>
@@ -23,6 +24,7 @@
         <tr>
           <td><%= space.id %></td>
           <td><%= link_to space.name,admin_space_path(space.id) %></td>
+          <td><%= space.genre.name %></td>
           <td>
             <%= space.average_rating %>
             <div id="rating-rate<%= space.id %>"></div>

@@ -26,8 +26,20 @@
         </div>
         <div class="form-group row">
           <%= f.label :address, "住所", class: "col-sm-4" %>
-          <%= f.text_field :address,class: "form-control offset-1 ml-auto" %>
+          <%= f.text_field :address, class: "form-control offset-1 ml-auto" %>
+          <input type="button" value="緯度経度を特定" onclick="codeAddress()">
         </div>
+
+        <div class="form-group row">
+          <%= f.label :latitude, "緯度", class: "col-sm-4" %>
+          <%= f.text_field :latitude, class: "form-control offset-1 ml-auto" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :longitude, "経度", class: "col-sm-4" %>
+          <%= f.text_field :longitude, class: "form-control offset-1 ml-auto" %>
+        </div>
+
         <div class="form-group row">
           <%= f.label :telephone_number, "電話番号", class: "col-sm-4" %>
           <%= f.text_field :telephone_number, class: "form-control col-sm-8" %>
@@ -94,3 +106,61 @@
     </div>
   <% end %>
 </div>
+
+
+
+
+
+<h2>gmap</h2>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6761919, lng:139.6503106},
+    zoom: 10,
+  });
+
+}
+
+let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('space_address').value;
+  
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      
+      document.getElementById('space_latitude').value = results[0].geometry.location.lat();
+      document.getElementById('space_longitude').value = results[0].geometry.location.lng();
+
+      console.log(results[0].geometry.location);
+      console.log(results[0].geometry.location.lat());
+      console.log(results[0].geometry.location.lng());
+      
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>
