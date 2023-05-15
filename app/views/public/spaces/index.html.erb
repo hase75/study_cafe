@@ -35,28 +35,10 @@
                 });
               </script>
           </td>
-
-          <td>
-            <% if space.latitude.present? %>
-              <%= space.latitude %>
-            <% else %>
-              存在してない
-            <% end %>
-          </td>
-
-
         </tr>
       <% end %>
       </tbody>
     </table>
-  </div>
-
-  <div class="container">
-    <div class="row">
-     <div class="col-md-4 offset-md-4 py-2  mt-5">
-
-     </div>
-    </div>
   </div>
 </div>
 
@@ -93,13 +75,16 @@ function initMap(){
   });
 
   <% @spaces.each do |space| %>
-    <% if space.latitude.present? %>
-       marker = new google.maps.Marker({
-         position:  {lat: <%= space.latitude %>, lng:<%= space.longitude %>},
-         map: map
-       });
-    <% end %>
+    marker = new google.maps.Marker({
+      position:  {lat: <%= space.latitude %>, lng:<%= space.longitude %>},
+      map: map
+    });
   <% end %>
+  
+     infoWindow = new google.maps.InfoWindow({
+     content: '新宿駅'
+    });
+    infowindow.open(map, marker);
 }
 
 let geocoder
@@ -119,6 +104,17 @@ function codeAddress(){
     }
   });
 }
+
+// マーカーにクリックイベントを追加
+    function markerEvent(i) {
+        marker.addListener('click', function() {
+            if(activeWindow !== undefined){
+                activeWindow.close();
+            }
+            activeWindow = infoWindow;
+            infoWindow[i].open(map, marker);
+      });
+    }
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>

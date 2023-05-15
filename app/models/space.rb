@@ -3,7 +3,6 @@ class Space < ApplicationRecord
   belongs_to :genre
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :space_tags, dependent: :destroy
 
   def average_rating
     reviews.average(:rating).to_f
