@@ -40,26 +40,24 @@
       </tbody>
     </table>
   </div>
-</div>
 
+  <%= render 'public/spaces/searchform', q: @q, url: spaces_path %>
 
+  <h2>gmap</h2>
 
-<%= render 'public/spaces/searchform', q: @q, url: spaces_path %>
-
-
-
-
-<h2>gmap</h2>
-
-<input id="address" type="textbox" >
-<input type="button" value="検索" onclick="codeAddress()">
+  <!--<div class="form-group">-->
+  <!--  <input id="address" type="textbox", class="form-control d-inline w-50" >-->
+  <!--  <input type="button" value="検索" onclick="codeAddress()", class="btn btn-primary d-inline ml-4 px-4">-->
+  <!--</div>-->
+  
 
 <div id='map'></div>
+</div>
 
 <style>
 #map {
-  height: 600px;
-  width: 600px;
+  height: 300px;
+  width: 100%;
 }
 </style>
 
@@ -74,17 +72,31 @@ function initMap(){
     zoom: 10,
   });
 
-  <% @spaces.each do |space| %>
-    marker = new google.maps.Marker({
-      position:  {lat: <%= space.latitude %>, lng:<%= space.longitude %>},
+  <% @spaces.each_with_index do |space, i| %>
+    var latLng = {lat: <%= space.latitude %>, lng:<%= space.longitude %>}
+    var marker<%= i %> = new google.maps.Marker({
+      position:  latLng,
       map: map
     });
-  <% end %>
-  
-     infoWindow = new google.maps.InfoWindow({
-     content: '新宿駅'
+
+    var infoWindow<%= i %> = new google.maps.InfoWindow({
+      position: latLng,
+      content: `
+      <div class="card" style="width: 14rem;">
+        <%=j image_tag "no_image.jpeg", class: "mx-5" %>
+        <div class="card-body">
+          <h5 class="card-title"><%=j space.name %></div>
+          <p class="card-text mx-2"><%=j space.introduction.truncate(24) %></p>
+          <%=j link_to "詳しくみる", space, class: "btn btn-primary mx-2" %>
+        </div>
+      </div>
+      `
     });
-    infowindow.open(map, marker);
+    marker<%= i %>.addListener('click', () => {
+      infoWindow<%= i %>.open(map, marker<%= i %>);
+    });
+  <% end %>
+
 }
 
 let geocoder
