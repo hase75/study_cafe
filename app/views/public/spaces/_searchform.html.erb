@@ -3,7 +3,16 @@
   <div class="searches-body">
     <div class="search-body__subtitle">詳細検索</div>
 
-    <!-- キーワード検索 -->
+    <!-- 店舗名検索 -->
+    <div class="form-group">
+      <label>
+        <i class="fas fa-tag icon"></i>
+        <span>店舗名から探す</span>
+      </label>
+      <%= f.search_field :name_cont, class: "input-default", placeholder: '例）スターバックス' %>
+    </div>
+
+    <!-- ジャンル検索 -->
     <div class="form-group">
       <label>
         <i class="fas fa-plus icon"></i>
@@ -62,6 +71,6 @@
 
   <div class="search-done-btn">
     <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
-    <%= f.button "検索", class: "btn-default btn-primary" %>
+    <%= f.button "絞り込む", class: "btn-default btn-primary" %>
   </div>
 <% end %>

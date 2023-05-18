@@ -103,8 +103,8 @@
   <div class=card>
     <p><%= review.customer.name %></p>
     <p><%= review.rating %>点</p>
-    
-    <div id="rating-rate<%= review.id %>"></div>    
+
+    <div id="rating-rate<%= review.id %>"></div>
     <script>
       $('#rating-rate<%= review.id%>').raty({
         size      : 36,
@@ -116,12 +116,60 @@
         half: true
       });
     </script>
-    
+
     <p><%= review.comment %></p>
-    
+
     <% if customer_signed_in? && current_customer.id == review.customer_id %>
       <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' } %>
     <% end %>
-  
+
   </div>
 <% end %>
+
+
+
+<div class="row">
+  <div class="col-12">
+    <div id='map'></div>
+    <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+    </style>
+    <script>
+    let map
+
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+        zoom: 16,
+      });
+
+       marker = new google.maps.Marker({
+        position:  {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+        map: map
+      });
+
+     var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+     infoWindow = new google.maps.InfoWindow({
+      position: latLng,
+      content: `
+      <div class="card" style="width: 14rem;">
+        <%=j image_tag "no_image.jpeg", class: "mx-5" %>
+        <div class="card-body">
+          <h5 class="card-title"><%=j @space.name %></div>
+        </div>
+      </div>
+      `
+    });
+    marker.addListener('click', () => {
+      infoWindow.open(map, marker);
+    });
+   }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>
+  </div>
+</div>
