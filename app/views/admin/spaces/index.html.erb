@@ -1,62 +1,79 @@
 <div class="container my-5">
-  
   <div class="row">
-    <h3 class="border rounded shadow-sm font-weight-bold px-3">店舗一覧</h3>
-  </div>
-  
-  <div class="row text-right">
-    <%= link_to "+", new_admin_space_path, class: "btn btn-lg rounded-circle text-right ml-auto shadow" %>
-  </div>
-  
-  <div class="row mt-5">
-    <table class="table table-bordered border-dark">
-      <thead>
-        <tr class="bg-secondary text-light">
-          <th>店舗ID</th>
-          <th>店名</th>
-          <th>ジャンル</th>
-          <th>評価</th>
-          <th>ステータス</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @spaces.each do |space| %>
-        <tr>
-          <td><%= space.id %></td>
-          <td><%= link_to space.name,admin_space_path(space.id) %></td>
-          <td><%= space.genre.name %></td>
-          <td>
-            <%= space.average_rating %>
-            <div id="rating-rate<%= space.id %>"></div>
-              <script>
-                $('#rating-rate<%= space.id %>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  starHalf  : '<%= asset_path('star-half.png') %>',
-                  readOnly: true,
-                  score: <%= space.average_rating || 0 %>,
-                  half: true
-                });
-              </script>
-          </td>
-          <td><% if space.is_active? %>
-                <span class="text-success">有効</span>
-              <% else %>
-                <span class="text-secondary">閉店</span>
-              <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
 
-  <div class="container">
-    <div class="row">
-     <div class="col-md-4 offset-md-4 py-2  mt-5">
-      
-     </div>
+    <div class="col-3 pr-5">
+      <div "sidebar_fixed">
+        <%= render 'admin/spaces/searchform', q: @q, url: admin_spaces_path %>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4">店舗一覧</h3>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <%= link_to "+", new_admin_space_path, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <%= render 'admin/spaces/map', spaces: @spaces, url: admin_spaces_path %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr class="bg-secondary text-light">
+                <th>店舗ID</th>
+                <th>店舗名</th>
+                <th>ジャンル</th>
+                <th>評価</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @spaces.each do |space| %>
+              <tr>
+                <td><%= space.id %></td>
+                <td><%= link_to space.name,admin_space_path(space.id) %></td>
+                <td><%= space.genre.name %></td>
+                <td>
+                  <%= space.average_rating %>
+                  <div id="rating-rate<%= space.id %>"></div>
+                    <script>
+                      $('#rating-rate<%= space.id %>').raty({
+                        size      : 36,
+                        starOff   : '<%= asset_path('star-off.png') %>',
+                        starOn    : '<%= asset_path('star-on.png') %>',
+                        starHalf  : '<%= asset_path('star-half.png') %>',
+                        readOnly: true,
+                        score: <%= space.average_rating || 0 %>,
+                        half: true
+                      });
+                    </script>
+                </td>
+                <td><% if space.is_active? %>
+                      <span class="text-success">有効</span>
+                    <% else %>
+                      <span class="text-secondary">閉店</span>
+                    <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row d-flex align-items-center justify-content-center">
+  	    <div class="mt-5">
+  	      <%= paginate @spaces %>
+  	    </div>
+      </div>
     </div>
   </div>
 </div>

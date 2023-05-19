@@ -1,0 +1,45 @@
+<div id='map'></div>
+<style>
+#map {
+  height: 500px;
+  width: 100%;
+}
+</style>
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.5178386, lng:138.9269794},
+    zoom: 5,
+  });
+
+  <% spaces.each_with_index do |space, i| %>
+    var latLng = {lat: <%= space.latitude %>, lng:<%= space.longitude %>}
+    var marker<%= i %> = new google.maps.Marker({
+      position:  latLng,
+      map: map
+    });
+
+    var infoWindow<%= i %> = new google.maps.InfoWindow({
+      position: latLng,
+      content: `
+      <div class="card" style="width: 14rem;">
+        <%=j image_tag "no_image.jpeg", class: "mx-5" %>
+        <div class="card-body">
+          <h5 class="card-title"><%=j space.name %></div>
+          <p class="card-text mx-2"><%=j space.introduction.truncate(24) %></p>
+          <%=j link_to "詳しくみる", space, data: {"turbolinks"=>false}, class: "btn btn-primary mx-2" %>
+        </div>
+      </div>
+      `
+    });
+    marker<%= i %>.addListener('click', () => {
+      infoWindow<%= i %>.open(map, marker<%= i %>);
+    });
+  <% end %>
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>

@@ -1,7 +1,16 @@
-<%= search_form_for q, url: spaces_path do |f| %>
+<%= search_form_for q, url: admin_spaces_path do |f| %>
 
   <div class="border rounded">
     <h5 class="font-weight-bold mb-3 ml-3">詳細検索</h5>
+
+    <!-- 店舗ID検索 -->
+    <div class="form-group ml-3">
+      <label>
+        <i class="fa-solid fa-key"></i>
+        <span>店舗IDから探す</span>
+      </label>
+      <%= f.search_field :id_eq %>
+    </div>
 
     <!-- 店舗名検索 -->
     <div class="form-group ml-3">
@@ -9,16 +18,7 @@
         <i class="fa-solid fa-shop"></i>
         <span>店舗名から探す</span>
       </label>
-      <%= f.search_field :name_cont, class: "input-default", placeholder: '例）スターバックス' %>
-    </div>
-
-    <!-- ジャンル検索 -->
-    <div class="form-group ml-3">
-      <label>
-        <i class="fa-brands fa-searchengin"></i>
-        <span>ジャンルから探す</span>
-      </label>
-      <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, { include_blank: '--選択してください--' } %>
+      <%= f.search_field :name_cont, placeholder: '例）スターバックス' %>
     </div>
 
     <!-- エリア・駅名検索 -->
@@ -27,7 +27,16 @@
         <i class="fa-solid fa-train"></i>
         <span>エリア・駅名から探す</span>
       </label>
-      <%= f.search_field :address_or_transportation_cont, class: "input-default", placeholder: '例）東京、新宿' %>
+      <%= f.search_field :address_or_transportation_cont, placeholder: '例）東京、新宿' %>
+    </div>
+
+    <!-- ジャンル検索 -->
+    <div class="form-group ml-3">
+      <label>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>ジャンルから探す</span>
+      </label>
+      <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, { include_blank: '--選択してください--' } %>
     </div>
 
     <!-- 絞り込み検索（店舗の設備） -->
@@ -67,6 +76,13 @@
         </div>
         <div class="checkbox-default">
           <label>
+            <%= f.check_box :smoking_eq , {} , false, false %>
+            禁煙
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
             <%= f.check_box :parking_eq , {} , true, false %>
             駐車場
             <i class="check-icon"></i>
@@ -74,6 +90,33 @@
         </div>
       </div>
     </div>
+
+    <!-- 店舗ステータス検索（店舗の設備） -->
+    <div class="form-group ml-3">
+      <label>
+        <i class="fa-solid fa-star"></i>
+        <span>店舗ステータス</span>
+      </label>
+      <div class="checkbox">
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :is_active_eq , {} , true, false %>
+            有効
+            <i class="check-icon"></i>
+          </label>
+        </div>
+        <div class="checkbox-default">
+          <label>
+            <%= f.check_box :is_active_eq , {} , false, false %>
+            閉店
+            <i class="check-icon"></i>
+          </label>
+        </div>
+    　</div>
+    </div>
+
+
+
     <div class="search-done-btn ml-3">
       <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
       <%= f.button "絞り込む", class: "btn-default btn-primary" %>

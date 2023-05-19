@@ -1,7 +1,12 @@
 class Admin::SpacesController < ApplicationController
   
   def index
-    @spaces = Space.search(params[:keyword])
+    @q = Space.ransack(params[:q])
+    if params[:keyword]
+      @spaces = Space.search(params[:keyword]).page(params[:page]).per(10)
+    else
+      @spaces = @q.result(distinct: true).page(params[:page]).per(10)
+    end
   end
 
   def new

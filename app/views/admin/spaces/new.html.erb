@@ -1,163 +1,169 @@
 <div class="container my-5">
-
   <div class="row">
-    <h3 class="border rounded shadow-sm font-weight-bold px-3">店舗新規登録</h3>
-  </div>
 
-  <%= form_with model: @space, url:admin_spaces_path do |f| %>
-
-    <div class="row mt-5">
-      <div class="col-sm-5">
-        <div class="form-group row">
-          <%= f.label :image, "店舗画像", class: "col-sm-4" %>
-          <%= f.file_field :image, accept: "image/*", class: "col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :name, "店舗名", class: "col-sm-4" %>
-          <%= f.text_field :name, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :introduction, "店舗紹介文", class: "col-sm-4" %>
-          <%= f.text_area :introduction, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :genre_id, "ジャンル", class: "col-sm-4" %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, option = {include_blank: '--選択してください--'}, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :address, "住所", class: "col-sm-4" %>
-          <%= f.text_field :address, class: "form-control offset-1 ml-auto" %>
-          <input type="button" value="緯度経度を特定" onclick="codeAddress()">
-        </div>
-        <div class="form-group row">
-          <%= f.label :latitude, "緯度", class: "col-sm-4" %>
-          <%= f.text_field :latitude, class: "form-control offset-1 ml-auto" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :longitude, "経度", class: "col-sm-4" %>
-          <%= f.text_field :longitude, class: "form-control offset-1 ml-auto" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :telephone_number, "電話番号", class: "col-sm-4" %>
-          <%= f.text_field :telephone_number, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :transportation, "交通手段", class: "col-sm-4" %>
-          <%= f.text_area :transportation, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :business_hours, "営業時間", class: "col-sm-4" %>
-          <%= f.time_select :start_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
-          <%= f.time_select :end_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :private_room, "個室", class: "col-sm-4" %>
-          <%= f.radio_button :private_room, true %>
-          <%= f.label :private_room, '有' %>
-          <%= f.radio_button :private_room, false %>
-          <%= f.label :private_room, '無' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :smoking, "喫煙・喫煙", class: "col-sm-4" %>
-          <%= f.radio_button :smoking, true %>
-          <%= f.label :smoking, '喫煙可' %>
-          <%= f.radio_button :smoking, false %>
-          <%= f.label :smoking, '禁煙' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :parking, "駐車場", class: "col-sm-4" %>
-          <%= f.radio_button :parking, true %>
-          <%= f.label :parking, '有' %>
-          <%= f.radio_button :parking, false %>
-          <%= f.label :parking, '無' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :wifi, "Wi-Fi", class: "col-sm-4" %>
-          <%= f.radio_button :wifi, true %>
-          <%= f.label :wifi, '有' %>
-          <%= f.radio_button :wifi, false %>
-          <%= f.label :wifi, '無' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :outlet, "コンセント", class: "col-sm-4" %>
-          <%= f.radio_button :outlet, true %>
-          <%= f.label :outlet, '有' %>
-          <%= f.radio_button :outlet, false %>
-          <%= f.label :outlet, '無' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :website, "WEBサイトURL", class: "col-sm-4" %>
-          <%= f.text_field :website, class: "form-control col-sm-8" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :is_active, "店舗ステータス", class: "col-sm-4" %>
-          <%= f.radio_button :is_active, true %>
-          <%= f.label :is_active, '有効' %>
-          <%= f.radio_button :is_active, false %>
-          <%= f.label :is_active, '閉店' %>
-        </div>
-        <div class="form-group row">
-          <%= f.submit :新規登録, class: "btn btn-success mx-auto" %>
+    <div class="col-7">
+      <div class="row">
+        <div class="col-4">
+          <h3 class="border rounded shadow-sm font-weight-bold mb-5 d-flex align-items-center justify-content-center">店舗新規登録</h3>
         </div>
       </div>
+
+      <%= form_with model: @space, url:admin_spaces_path do |f| %>
+
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group row">
+            <%= f.label :image, "店舗画像", class: "col-4" %>
+            <%= f.file_field :image, accept: "image/*", class: "col-8" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :name, "店舗名", class: "col-4" %>
+            <%= f.text_field :name, class: "form-control col-sm-8" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :introduction, "店舗紹介文", class: "col-sm-4" %>
+            <%= f.text_area :introduction, class: "form-control col-8" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :genre_id, "ジャンル", class: "col-sm-4" %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, option = {include_blank: '--選択してください--'}, class: "form-control col-5" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :address, "住所", class: "col-4" %>
+            <%= f.text_field :address, class: "form-control col-8" %>
+            <input type="button" value="緯度経度を特定" onclick="codeAddress()", class= "offset-4 btn-info rounded">
+          </div>
+          <div class="form-group row">
+            <%= f.label :latitude, "緯度", class: "col-4" %>
+            <%= f.text_field :latitude, class: "form-control col-4" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :longitude, "経度", class: "col-4" %>
+            <%= f.text_field :longitude, class: "form-control col-4" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :telephone_number, "電話番号", class: "col-4" %>
+            <%= f.text_field :telephone_number, class: "form-control col-4" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :transportation, "交通手段", class: "col-4" %>
+            <%= f.text_area :transportation, class: "form-control col-8" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :business_hours, "営業時間", class: "col-4" %>
+            <%= f.time_select :start_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
+            <%= f.time_select :end_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :private_room, "個室", class: "col-4" %>
+            <%= f.radio_button :private_room, true %>
+            <%= f.label :private_room, '有' %>
+            <%= f.radio_button :private_room, false %>
+            <%= f.label :private_room, '無' %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :smoking, "喫煙・喫煙", class: "col-4" %>
+            <%= f.radio_button :smoking, true %>
+            <%= f.label :smoking, '喫煙可' %>
+            <%= f.radio_button :smoking, false %>
+            <%= f.label :smoking, '禁煙' %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :parking, "駐車場", class: "col-4" %>
+            <%= f.radio_button :parking, true %>
+            <%= f.label :parking, '有' %>
+            <%= f.radio_button :parking, false %>
+            <%= f.label :parking, '無' %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :wifi, "Wi-Fi", class: "col-4" %>
+            <%= f.radio_button :wifi, true %>
+            <%= f.label :wifi, '有' %>
+            <%= f.radio_button :wifi, false %>
+            <%= f.label :wifi, '無' %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :outlet, "コンセント", class: "col-4" %>
+            <%= f.radio_button :outlet, true %>
+            <%= f.label :outlet, '有' %>
+            <%= f.radio_button :outlet, false %>
+            <%= f.label :outlet, '無' %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :website, "WEBサイトURL", class: "col-4" %>
+            <%= f.text_field :website, class: "form-control col-8" %>
+          </div>
+          <div class="form-group row">
+            <%= f.label :is_active, "店舗ステータス", class: "col-4" %>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, '有効' %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, '閉店' %>
+          </div>
+          <div class="form-group row">
+            <%= f.submit :新規登録, class: "btn btn-success mx-auto" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
     </div>
-  <% end %>
+
+    <div class="col-5">
+      <div id='map'></div>
+
+      <style>
+      #map {
+        height: 450px;
+        width: 450px;
+      }
+      </style>
+
+      <script>
+      let map
+
+      function initMap(){
+        geocoder = new google.maps.Geocoder()
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 37.5178386, lng:138.9269794},
+          zoom: 5,
+        });
+
+      }
+
+      let geocoder
+
+      function codeAddress(){
+        let inputAddress = document.getElementById('space_address').value;
+
+
+        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+
+            document.getElementById('space_latitude').value = results[0].geometry.location.lat();
+            document.getElementById('space_longitude').value = results[0].geometry.location.lng();
+
+            // console.log(results[0].geometry.location);
+            // console.log(results[0].geometry.location.lat());
+            // console.log(results[0].geometry.location.lng());
+
+          } else {
+            alert('該当する結果がありませんでした：' + status);
+          }
+        });
+      }
+
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>
+    </div>
+  </div>
 </div>
 
 
 
 
-
-<h2>gmap</h2>
-
-<div id='map'></div>
-
-<style>
-#map {
-  height: 600px;
-  width: 600px;
-}
-</style>
-
-<script>
-let map
-
-function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 35.6761919, lng:139.6503106},
-    zoom: 10,
-  });
-
-}
-
-let geocoder
-
-function codeAddress(){
-  let inputAddress = document.getElementById('space_address').value;
-  
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      
-      document.getElementById('space_latitude').value = results[0].geometry.location.lat();
-      document.getElementById('space_longitude').value = results[0].geometry.location.lng();
-
-      console.log(results[0].geometry.location);
-      console.log(results[0].geometry.location.lat());
-      console.log(results[0].geometry.location.lng());
-      
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });
-}
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>
