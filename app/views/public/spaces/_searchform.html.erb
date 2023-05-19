@@ -1,39 +1,39 @@
 <%= search_form_for q, url: spaces_path do |f| %>
 
-  <div class="searches-body">
-    <div class="search-body__subtitle">詳細検索</div>
+  <div class="border rounded">
+    <h5 class="font-weight-bold mb-3 ml-3">詳細検索</h5>
 
     <!-- 店舗名検索 -->
-    <div class="form-group">
+    <div class="form-group ml-3">
       <label>
-        <i class="fas fa-tag icon"></i>
+        <i class="fa-solid fa-shop"></i>
         <span>店舗名から探す</span>
       </label>
       <%= f.search_field :name_cont, class: "input-default", placeholder: '例）スターバックス' %>
     </div>
 
     <!-- ジャンル検索 -->
-    <div class="form-group">
+    <div class="form-group ml-3">
       <label>
-        <i class="fas fa-plus icon"></i>
+        <i class="fa-brands fa-searchengin"></i>
         <span>ジャンルから探す</span>
       </label>
       <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, { include_blank: '--選択してください--' } %>
     </div>
 
     <!-- エリア・駅名検索 -->
-    <div class="form-group">
+    <div class="form-group ml-3">
       <label>
-        <i class="fas fa-tag icon"></i>
+        <i class="fa-solid fa-train"></i>
         <span>エリア・駅名から探す</span>
       </label>
       <%= f.search_field :address_or_transportation_cont, class: "input-default", placeholder: '例）東京、新宿' %>
     </div>
 
     <!-- 絞り込み検索（店舗の設備） -->
-    <div class="form-group">
+    <div class="form-group ml-3">
       <label>
-        <i class="fas fa-star icon"></i>
+        <i class="fa-solid fa-wifi"></i>
         <span>店舗の設備</span>
       </label>
       <div class="checkbox">
@@ -67,10 +67,9 @@
         </div>
     　</div>
     </div>
-  </div>
-
-  <div class="search-done-btn">
-    <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
-    <%= f.button "絞り込む", class: "btn-default btn-primary" %>
-  </div>
-<% end %>
+    <div class="search-done-btn ml-3">
+      <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
+      <%= f.button "絞り込む", class: "btn-default btn-primary" %>
+    </div>
+  <% end %>
+</div>

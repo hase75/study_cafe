@@ -1,16 +1,17 @@
+<div class="container my-5">
+  
+  <div class="row">
 
-  <div class="row my-5 mx-5">
-
-    <div class="col-2">
+    <div class="col-3 pr-5">
       <div "sidebar_fixed">
         <%= render 'public/spaces/searchform', q: @q, url: spaces_path %>
       </div>
     </div>
 
-    <div class="col">
+    <div class="col-9">
       <div class="row">
-        <div class="col-2">
-          <h3 class="border rounded shadow-sm font-weight-bold mb-4">全国の店舗</h3>
+        <div class="col-3">
+          <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4">全国の店舗</h3>
         </div>
       </div>
       <div class="row">
@@ -62,43 +63,47 @@
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvlf0tCGkpE21Wxbi80hNfYo1vdNw3TOc&callback=initMap" async defer></script>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-12">
-          <table class="table table-bordered border-dark">
-            <thead>
-              <tr class="bg-secondary text-light">
-              　<th></th>
-                <th>店名</th>
-                <th>ジャンル</th>
-                <th>評価</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @spaces.each do |space| %>
-              <tr>
-                <td><%= image_tag space.get_image, size: '100x100' %></td>
-                <td><%= link_to space.name,space_path(space.id) %></td>
-                <td><%= space.genre.name %></td>
-                <td>
-                  <%= space.average_rating %>
-                  <div id="rating-rate<%= space.id %>"></div>
-                    <script>
-                      $('#rating-rate<%= space.id %>').raty({
-                        size      : 36,
-                        starOff   : '<%= asset_path('star-off.png') %>',
-                        starOn    : '<%= asset_path('star-on.png') %>',
-                        starHalf  : '<%= asset_path('star-half.png') %>',
-                        readOnly: true,
-                        score: <%= space.average_rating || 0 %>,
-                        half: true
-                      });
-                    </script>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
+          <div class="table">
+            <table class="table table-bordered border-dark">
+              <thead>
+                <tr class="bg-secondary text-light">
+                　<th></th>
+                  <th>店名</th>
+                  <th>ジャンル</th>
+                  <th>評価</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @spaces.each do |space| %>
+                <tr>
+                  <td><%= image_tag space.get_image, size: '100x100' %></td>
+                  <td><%= link_to space.name,space_path(space.id) %></td>
+                  <td><%= space.genre.name %></td>
+                  <td>
+                    <%= space.average_rating %>
+                    <div id="rating-rate<%= space.id %>"></div>
+                      <script>
+                        $('#rating-rate<%= space.id %>').raty({
+                          size      : 36,
+                          starOff   : '<%= asset_path('star-off.png') %>',
+                          starOn    : '<%= asset_path('star-on.png') %>',
+                          starHalf  : '<%= asset_path('star-half.png') %>',
+                          readOnly: true,
+                          score: <%= space.average_rating || 0 %>,
+                          half: true
+                        });
+                      </script>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
