@@ -1,41 +1,45 @@
 <div class="container my-5">
-
   <div class="row">
-    <h3 class="border rounded shadow-sm font-weight-bold px-3">ジャンル一覧・追加</h3>
-  </div>
 
-  <%= form_with model: @genre, url:admin_genres_path do |f| %>
-
-  <div class="row mt-5">
-    <div class="col-sm-6">
-      <div class="form-group row">
-        <%= f.label :name, "ジャンル名", class: "col-sm-3" %>
-        <%= f.text_field :name, class: "col-sm-5" %>
-        <%= f.submit '新規登録', class: "btn btn-success ml-5" %>
+    <div class="col-12">
+      <div class="row d-flex align-items-center justify-content-center">
+        <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-5 d-flex align-items-center justify-content-center">ジャンル一覧・追加</h3>
       </div>
-    </div>
-  </div>
-  <% end %>
-  <div class="row mt-5">
-    <div class="col-5">
-      <table class="table table-bordered border-dark">
-        <thead>
-          <tr class="bg-secondary text-light">
-            <th>ジャンル</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @genres.each do |genre| %>
-          <tr>
-            <td><%= genre.name %></td>
-            <td><%= link_to '編集する',edit_admin_genre_path(genre.id), class: "btn btn-outline-success" %></td>
-            <td><%= link_to '削除する',admin_genre_path(genre.id),method: :delete,"data-confirm" => "Are you sure?", class: "btn btn-outline-danger" %></td>
-          <tr>
-        <% end %>
-        </tbody>
-      </table>
+
+      <%= form_with model: @genre, url:admin_genres_path do |f| %>
+
+      <div class="row mb-5 d-flex align-items-center justify-content-center">
+        <div class="col-5">
+          <div class="form-group row">
+            <%= f.label :name, "ジャンル名", class: "col-sm-3" %>
+            <%= f.text_field :name, class: "col-sm-5" %>
+            <%= f.submit '新規登録', class: "btn btn-success ml-5" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-6">
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr class="bg-secondary text-light">
+                <th>ジャンル</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @genres.each do |genre| %>
+              <tr>
+                <td><%= genre.name %></td>
+                <td><%= link_to '編集する',edit_admin_genre_path(genre.id), class: "btn btn-outline-success" %></td>
+                <td><%= link_to '削除する',admin_genre_path(genre.id),method: :delete,"data-confirm" => "Are you sure?", class: "btn btn-outline-danger" %></td>
+              <tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
