@@ -13,7 +13,7 @@
           <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4">店舗一覧</h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
-          <%= link_to "+", new_admin_space_path, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
+          <%= link_to "+", new_admin_space_path, data: {"turbolinks"=>false}, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
         </div>
       </div>
 
@@ -25,23 +25,28 @@
 
       <div class="row mt-3">
         <div class="col-12">
-          <table class="table table-bordered border-dark">
+          <table class="table table-bordered">
             <thead>
               <tr class="bg-secondary text-light">
                 <th>店舗ID</th>
-                <th>店舗名</th>
-                <th>ジャンル</th>
-                <th>評価</th>
-                <th>ステータス</th>
+                <th class="d-flex align-items-center justify-content-center">店舗名</th>
+                <th class="pl-4">ジャンル</th>
+                <th class="d-flex align-items-center justify-content-center">評価</th>
+                <th class="pl-4">ステータス</th>
               </tr>
             </thead>
             <tbody>
             <% @spaces.each do |space| %>
               <tr>
-                <td><%= space.id %></td>
-                <td><%= link_to space.name,admin_space_path(space.id) %></td>
-                <td><%= space.genre.name %></td>
+                <td class="d-flex align-items-center justify-content-center" style="height:180px;"><%= space.id %></td>
                 <td>
+                  <%= link_to admin_space_path(space.id), class:"text-decoration-none" do %>
+                    <%= image_tag space.get_image, size: '150x150' %>
+                  <% end %>
+                  <%= link_to space.name,admin_space_path(space.id), class:"text-decoration-none" %>
+                </td>
+                <td class="d-flex align-items-center justify-content-center" style="height:180px;"><%= space.genre.name %></td>
+                <td class="pt-5 pl-4">
                   <%= space.average_rating %>
                   <div id="rating-rate<%= space.id %>"></div>
                     <script>
@@ -56,7 +61,7 @@
                       });
                     </script>
                 </td>
-                <td><% if space.is_active? %>
+                <td class="d-flex align-items-center justify-content-center" style="height:180px;"><% if space.is_active? %>
                       <span class="text-success">有効</span>
                     <% else %>
                       <span class="text-secondary">閉店</span>

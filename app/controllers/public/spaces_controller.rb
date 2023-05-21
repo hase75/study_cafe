@@ -3,9 +3,9 @@ class Public::SpacesController < ApplicationController
   def index
     @q = Space.ransack(params[:q])
     if params[:keyword]
-      @spaces = Space.search(params[:keyword]).where(is_active: true)
+      @spaces = Space.search(params[:keyword]).where(is_active: true).page(params[:page]).per(10)
     else
-      @spaces = @q.result(distinct: true).where(is_active: true)
+      @spaces = @q.result(distinct: true).where(is_active: true).page(params[:page]).per(10)
     end
   end
 
