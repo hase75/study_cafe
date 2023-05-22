@@ -27,11 +27,11 @@ function initMap(){
       position: latLng,
       content: `
       <div class="card" style="width: 14rem;">
-        <%=j image_tag "no_image.jpeg", class: "mx-5" %>
+        <%=j image_tag space.get_image, class: "mx-2 mt-2" %>
         <div class="card-body">
           <h5 class="card-title"><%=j space.name %></div>
-          <p class="card-text mx-2"><%=j space.introduction.truncate(24) %></p>
-          <%=j link_to "詳しくみる", space, data: {"turbolinks"=>false}, class: "btn btn-primary mx-2" %>
+          <p class="card-text mx-2"><%=j space.introduction.truncate(50) %></p>
+          <%=j link_to "詳しくみる", space, data: {"turbolinks"=>false}, class: "btn btn-primary mx-2 mb-2" %>
         </div>
       </div>
       `

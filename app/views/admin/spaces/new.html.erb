@@ -9,6 +9,7 @@
       </div>
 
       <%= form_with model: @space, url:admin_spaces_path do |f| %>
+       <%= render 'layouts/error_messages', model: f.object %>
 
       <div class="row">
         <div class="col-10">

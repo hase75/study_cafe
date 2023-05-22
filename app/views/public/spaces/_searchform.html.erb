@@ -1,7 +1,7 @@
 <%= search_form_for q, url: spaces_path do |f| %>
 
   <div class="border rounded">
-    <h5 class="font-weight-bold mb-3 ml-3">詳細検索</h5>
+    <h5 class="font-weight-bold my-3 ml-3">詳細検索</h5>
 
     <!-- 店舗名検索 -->
     <div class="form-group ml-3">
@@ -74,9 +74,10 @@
         </div>
       </div>
     </div>
-    <div class="search-done-btn ml-3">
+    
+    <div class="search-done-btn mb-3 d-flex align-items-center justify-content-center">
+      <%= f.button "絞り込む", class: "btn-default btn-primary mr-3" %>
       <%= f.button "クリア", type: "reset", class: "btn-default btn-secondary" %>
-      <%= f.button "絞り込む", class: "btn-default btn-primary" %>
     </div>
   <% end %>
 </div>
