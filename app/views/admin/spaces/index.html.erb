@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-3 pr-5">
-      <div "sidebar_fixed">
+      <div class="sidebar_fixed">
         <%= render 'admin/spaces/searchform', q: @q, url: admin_spaces_path %>
       </div>
     </div>
@@ -10,7 +10,7 @@
     <div class="col-9">
       <div class="row">
         <div class="col-3">
-          <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4 d-flex align-items-center justify-content-center">店舗一覧</h3>
+          <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4 text-center">店舗一覧</h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
           <%= link_to "+", new_admin_space_path, data: {"turbolinks"=>false}, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
@@ -27,11 +27,11 @@
         <div class="col-12">
           <table class="table table-bordered">
             <thead>
-              <tr class="bg-secondary text-light">
+              <tr class="bg-secondary text-light text-center">
                 <th>店舗ID</th>
-                <th class="d-flex align-items-center justify-content-center">店舗名</th>
-                <th class="pl-5">評価</th>
-                <th class="d-flex align-items-center justify-content-center">ステータス</th>
+                <th>店舗名</th>
+                <th>評価</th>
+                <th>ステータス</th>
               </tr>
             </thead>
             <tbody>
@@ -78,5 +78,6 @@
   	    </div>
       </div>
     </div>
+    
   </div>
 </div>

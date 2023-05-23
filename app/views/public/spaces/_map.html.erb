@@ -1,7 +1,7 @@
 <div id='map'></div>
 <style>
 #map {
-  height: 500px;
+  height: 650px;
   width: 100%;
 }
 </style>
@@ -12,8 +12,8 @@ function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.5178386, lng:138.9269794},
-    zoom: 5,
+    center: {lat: 35.6815472961328, lng:139.76909301923038},
+    zoom: 11,
   });
 
   <% spaces.each_with_index do |space, i| %>
@@ -29,7 +29,7 @@ function initMap(){
       <div class="card" style="width: 14rem;">
         <%=j image_tag space.get_image, class: "mx-2 mt-2" %>
         <div class="card-body">
-          <h5 class="card-title"><%=j space.name %></div>
+          <h5 class="card-title"><%=j space.name %></h5>
           <p class="card-text mx-2"><%=j space.introduction.truncate(50) %></p>
           <%=j link_to "詳しくみる", space, data: {"turbolinks"=>false}, class: "btn btn-primary mx-2 mb-2" %>
         </div>

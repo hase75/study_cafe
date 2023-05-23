@@ -52,7 +52,7 @@
               </li>
               <li class="nav-item nav-link">
                 <i class="fa-solid fa-shop"></i>
-                <%= link_to "店舗一覧", spaces_path, data: {"turbolinks"=>false}, class: 'text-light text-decoration-none' %>
+                <%= link_to "店舗", spaces_path, data: {"turbolinks"=>false}, class: 'text-light text-decoration-none' %>
               </li>
               <li class="nav-item nav-link">
                 <i class="fas fa-sign-out-alt"></i>
@@ -81,5 +81,10 @@
       <p class="notice"><%= alert %></p>
       <%= yield %>
     </main>
+    <footer class="footer text-block", style="background-color: #dcdcdc;">
+      <div class="container text-center mt-3">
+        <p>© Study Station</p>
+      </div>
+    </footer>
   </body>
 </html>
