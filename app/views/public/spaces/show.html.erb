@@ -118,14 +118,7 @@
                  var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
                  infoWindow = new google.maps.InfoWindow({
                   position: latLng,
-                  content: `
-                  <div class="card" style="width: 10rem;">
-                    <%=j image_tag @space.get_image, class: "mx-2 mt-2" %>
-                    <div class="card-body">
-                      <h5 class="card-title"><%=j @space.name %></h5>
-                    </div>
-                  </div>
-                  `
+                  content: `<h6 class="card-title"><%=j @space.name %></h6>`
                 });
                 marker.addListener('click', () => {
                   infoWindow.open(map, marker);
@@ -179,7 +172,7 @@
             </script>
             <p class="mt-4"><%= review.comment %></p>
             <% if customer_signed_in? && current_customer.id == review.customer_id %>
-              <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3"%>
+              <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 text-decoration-none"%>
             <% end %>
           </div>
         <% end %>
