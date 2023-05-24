@@ -86,6 +86,7 @@
   <div class="row">
     <div class="col-10">
       <h5 class="font-weight-bold mt-5 mb-3">店舗基本情報</h5>
+       <div class="table-responsive">
         <table class="table table-table-bordered">
           <tbody>
             <tr>
@@ -118,7 +119,12 @@
                  var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
                  infoWindow = new google.maps.InfoWindow({
                   position: latLng,
-                  content: `<h6 class="card-title"><%=j @space.name %></h6>`
+                  content: `
+                  <div>
+                    <h6><%=j @space.name %></h6>
+                    <%=j @space.address %>
+                  </div>
+                  `
                 });
                 marker.addListener('click', () => {
                   infoWindow.open(map, marker);
@@ -146,6 +152,7 @@
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
   </div>
 
@@ -155,10 +162,10 @@
         <%= link_to 'レビューを投稿・編集する', new_review_path(space_id: @space.id), class: "btn btn-outline-info mb-3" %>
       </div>
         <% @reviews.each do |review|%>
-          <div class=card>
-            <h6 class="pt-3"><%= review.customer.name %></h6>
-            <h5 class="mt-2 text-danger font-weight-bold"><%= review.rating %></h5>
-            <div id="rating-rate<%= review.id %>"></div>
+          <div class=card >
+            <h6 class="pt-3 ml-3"><%= review.customer.name %></h6>
+            <h5 class="mt-2 text-danger font-weight-bold ml-3"><%= review.rating %></h5>
+            <div class="ml-3", id="rating-rate<%= review.id %>"></div>
             <script>
               $('#rating-rate<%= review.id%>').raty({
                 size      : 36,
@@ -170,9 +177,9 @@
                 half: true
               });
             </script>
-            <p class="mt-4"><%= review.comment %></p>
+            <p class="mt-4 ml-3"><%= review.comment %></p>
             <% if customer_signed_in? && current_customer.id == review.customer_id %>
-              <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 text-decoration-none"%>
+              <%= link_to '投稿を削除', review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 ml-3 text-decoration-none"%>
             <% end %>
           </div>
         <% end %>

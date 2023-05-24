@@ -121,7 +121,12 @@
                  var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
                  infoWindow = new google.maps.InfoWindow({
                   position: latLng,
-                  content: `<h6 class="card-title"><%=j @space.name %></h6>`
+                  content: `
+                  <div>
+                    <h6><%=j @space.name %></h6>
+                    <%=j @space.address %>
+                  </div>
+                  `
                 });
                 marker.addListener('click', () => {
                   infoWindow.open(map, marker);

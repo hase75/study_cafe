@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw', to: 'customers#withdraw'
     resources :spaces, only: [:index, :show]
     resources :reviews, only: [:new, :create, :update, :destroy]
+    resources :reviews, only: [:new, :create, :update, :destroy]
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :reviews, only: [:destroy]
+    resources :favorites, only: [:index, :create, :destroy]
   end
   
 

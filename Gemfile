@@ -62,3 +62,5 @@ gem 'rename'
 gem 'ransack'
 
 gem 'kaminari'
+
+gem 'jquery-rails'
