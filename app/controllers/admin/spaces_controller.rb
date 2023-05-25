@@ -14,9 +14,14 @@ class Admin::SpacesController < ApplicationController
   end
 
   def create
-    space = Space.new(space_params)
-    space.save
-    redirect_to admin_spaces_path
+    @space = Space.new(space_params)
+    if @space.save
+      flash[:notice] = "登録しました"
+      redirect_to admin_spaces_path
+    else
+      flash.now[:alert] = "登録に失敗しました"
+      render :new
+    end
   end
 
   def show

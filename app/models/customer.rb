@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  validates :name, presence: true
+  validates :email, presence: true
+  
   
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
@@ -14,4 +17,9 @@ class Customer < ApplicationRecord
       customer.name = "ゲスト"
     end
   end
+  
+  def already_favorited?(space)
+    self.favorites.exists?(space_id: space.id)
+  end
+
 end

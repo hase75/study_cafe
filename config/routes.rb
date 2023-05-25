@@ -16,8 +16,10 @@ Rails.application.routes.draw do
     patch 'customers/information', to: 'customers#update'
     get 'customers/confirm', to: 'customers#confirm'
     patch 'customers/withdraw', to: 'customers#withdraw'
-    resources :spaces, only: [:index, :show]
-    resources :reviews, only: [:new, :create, :update, :destroy]
+    resources :spaces, only: [:index, :show] do
+      resources :favorites, only: [:create, :destroy]
+    end
+    resources :favorites, only: [:index]
     resources :reviews, only: [:new, :create, :update, :destroy]
   end
   
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :favorites, only: [:index, :create, :destroy]
+    resources :reviews, only: [:destroy]
   end
   
 

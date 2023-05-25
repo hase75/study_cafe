@@ -3,7 +3,18 @@ class Space < ApplicationRecord
   belongs_to :genre
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
-
+  
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :address, presence: true
+  validates :telephone_number, presence: true
+  validates :website, presence: true
+  validates :transportation, presence: true
+  
+  def favorited_by?(customer)
+    favorites.where(customer_id: customer).exists?
+  end
+  
   def average_rating
     reviews.average(:rating).to_f
   end
