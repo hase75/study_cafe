@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-3 pr-5">
-      <div class="sidebar_fixed">
+      <div class= "sidebar_fixed">
         <%= render 'admin/spaces/searchform', q: @q, url: admin_spaces_path %>
       </div>
     </div>
@@ -10,7 +10,7 @@
     <div class="col-9">
       <div class="row">
         <div class="col-3">
-          <h3 class="border rounded shadow-sm font-weight-bold px-3 mb-4 text-center">店舗一覧</h3>
+          <h3 class="font-weight-bold mb-4">店舗一覧</h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
           <%= link_to "+", new_admin_space_path, data: {"turbolinks"=>false}, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
@@ -39,13 +39,13 @@
               <tr>
                 <td class="d-flex align-items-center justify-content-center" style="height:180px;"><%= space.id %></td>
                 <td>
-                  <%= link_to admin_space_path(space.id), class:"text-decoration-none" do %>
-                    <%= image_tag space.get_image, size: '150x150' %>
+                  <%= link_to admin_space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none" do %>
+                    <%= image_tag space.get_image, size: '150x150', class: "rounded"%>
                   <% end %>
-                  <%= link_to space.name,admin_space_path(space.id), class:"text-decoration-none font-weight-bold pl-5" %>
+                  <%= link_to space.name,admin_space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold pl-5" %>
                 </td>
                 <td class="pl-4 pt-5">
-                  <%= space.average_rating %>
+                  <h5 class="mt-2 text-danger font-weight-bold"><%= space.average_rating %></h5>
                   <div id="rating-rate<%= space.id %>"></div>
                     <script>
                       $('#rating-rate<%= space.id %>').raty({
@@ -78,6 +78,6 @@
   	    </div>
       </div>
     </div>
-    
+
   </div>
 </div>

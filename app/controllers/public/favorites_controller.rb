@@ -1,7 +1,7 @@
 class Public::FavoritesController < ApplicationController
   
   def index
-    @favorites = Favorite.where(customer_id: current_customer.id)
+    @favorites = Favorite.where(customer_id: current_customer.id).page(params[:page]).per(8)
   end
   
   def create
