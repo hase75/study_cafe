@@ -161,9 +161,9 @@
     <div class="col-lg-10 mt-5 pt-5">
       <% @reviews.each do |review|%>
         <div class=card>
-          <h6 class="pt-3"><%= review.customer.name %></h6>
-          <h5 class="mt-2 text-danger font-weight-bold"><%= review.rating %></h5>
-          <div id="rating-rate<%= review.id %>"></div>
+          <h6 class="pt-3 ml-3"><%= review.customer.name %></h6>
+          <h5 class="mt-2 text-danger font-weight-bold ml-3"><%= review.rating %></h5>
+          <div class="ml-3", id="rating-rate<%= review.id %>"></div>
           <script>
             $('#rating-rate<%= review.id%>').raty({
               size      : 36,
@@ -175,8 +175,8 @@
               half: true
             });
           </script>
-          <p class="mt-4"><%= review.comment %></p>
-          <%= link_to '投稿を削除', admin_review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 text-decoration-none"%>
+          <p class="mt-4 ml-3"><%= review.comment %></p>
+          <%= link_to '投稿を削除', admin_review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 ml-3 text-decoration-none"%>
         </div>
       <% end %>
     </div>

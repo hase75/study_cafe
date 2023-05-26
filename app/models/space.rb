@@ -5,7 +5,7 @@ class Space < ApplicationRecord
   has_many :reviews, dependent: :destroy
   
   validates :name, presence: true
-  validates :introduction, presence: true
+  validates :introduction, presence: true, length: {maximum: 100}
   validates :address, presence: true
   validates :telephone_number, presence: true
   validates :website, presence: true

@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true, length: {minimum: 2 , maximum: 20}
   validates :email, presence: true
   
   
