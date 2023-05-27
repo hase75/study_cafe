@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_27_072022) do
+ActiveRecord::Schema.define(version: 2023_05_27_102556) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -90,13 +90,6 @@ ActiveRecord::Schema.define(version: 2023_05_27_072022) do
     t.index ["customer_id", "space_id"], name: "index_reviews_on_customer_id_and_space_id", unique: true
     t.index ["customer_id"], name: "index_reviews_on_customer_id"
     t.index ["space_id"], name: "index_reviews_on_space_id"
-  end
-
-  create_table "space_images", force: :cascade do |t|
-    t.integer "space_id", null: false
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spaces", force: :cascade do |t|

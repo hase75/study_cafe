@@ -14,7 +14,7 @@
         <div class="col-10">
           <div class="form-group">
             <%= f.label :image, "店舗画像" %>
-            <p><%= f.file_field :image, multiple:true %></p>
+            <p><%= f.file_field :image, multiple:true, accept: "image/*" %></p>
           </div>
           <div class="form-group">
             <%= f.label :name, "店舗名" %>
@@ -125,8 +125,8 @@
         geocoder = new google.maps.Geocoder()
 
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.5178386, lng:138.9269794},
-          zoom: 5,
+          center: {lat:35.6815472961328, lng:139.76909301923038},
+          zoom: 15,
         });
 
       }

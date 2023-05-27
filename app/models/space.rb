@@ -1,12 +1,11 @@
 class Space < ApplicationRecord
   
-  has_many :space_images, dependent: :destroy
   belongs_to :genre
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   
   validates :name, presence: true
-  validates :introduction, presence: true, length: {maximum: 100}
+  validates :introduction, presence: true, length: {maximum: 200}
   validates :address, presence: true
   validates :telephone_number, presence: true
   validates :website, presence: true

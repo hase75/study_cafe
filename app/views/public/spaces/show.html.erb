@@ -35,7 +35,7 @@
 
   <div class="row">
     <div class="col-lg-7">
-      <%= image_tag @space.get_image, style: "max-width: 100%;", class: "rounded" %>
+      <%= render 'public/spaces/image', space: @space, url: admin_spaces_path %>
       <p class="mt-5"><%= @space.introduction %></p>
     </div>
     <div class="col-lg-4">

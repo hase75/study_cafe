@@ -1,5 +1,5 @@
 class Admin::SpacesController < ApplicationController
-  
+
   def index
     @q = Space.ransack(params[:q])
     if params[:keyword]
@@ -32,17 +32,22 @@ class Admin::SpacesController < ApplicationController
   def edit
     @space = Space.find(params[:id])
   end
-  
+
   def update
-    space = Space.find(params[:id])
-    space.update(space_params)
-    redirect_to admin_spaces_path
+    @space = Space.find(params[:id])
+    if @space.update(space_params)
+      flash[:notice] = "更新しました"
+      redirect_to admin_spaces_path
+    else
+      flash.now[:alert] = "更新に失敗しました"
+      render :edit
+    end
   end
-  
+
   private
 
   def space_params
     params.require(:space).permit(:name, :introduction, :genre_id, :address, :telephone_number, :transportation, :business_hours, :start_time, :end_time, :private_room, :smoking, :parking, :wifi, :outlet, :website, :is_active, :latitude, :longitude, image:[])
   end
-  
+
 end
