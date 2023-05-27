@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="my-3">カルーセル</h1>
+  <div class="carousel slide" id="sample" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <% space.image.each.with_index do |image, index| %>
+        <% if index == 0 %>
+          <li data-target="#sample" data-slide-to=<%= index %> class="active"></li>
+        <% else %>
+          <li data-target="#sample" data-slide-to=<%= index %>></li>
+        <% end %>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% space.image.each.with_index do |image, index| %>
+        <% if index == 0 %>
+          <div class="carousel-item test-class active"><%= image_tag image, class: "d-block w-100" %></div>
+        <% else %>
+          <div class="carousel-item test-class"><%= image_tag image, class: "d-block w-100" %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <a href="#sample" class="carousel-control-prev" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="sr-only">前の画像へ</span>
+    </a>
+    <a href="#sample" class="carousel-control-next" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="sr-only">次の画像へ</span>
+    </a>
+  </div>
+</div>
+

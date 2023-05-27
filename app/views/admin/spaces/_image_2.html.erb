@@ -1,0 +1,29 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <% image_tag space.image.drop(1).count.times do |show| %>
+      <li data-target="#carouselExampleIndicators" data-slide-to="#{show}"></li>
+    <% end %>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <% image_tag space.image.first(1).each do |image| %>
+        <%= attachment_image_tag image, :image, class: "carousel_image"  %>
+      <% end %>
+    </div> 
+    <% image_tag space.image.drop(1).each do |image| %>
+      <div class="carousel-item">
+        <%= attachment_image_tag image, :image, class: "carousel_image" %>
+      </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">前の画像へ</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">次の画像へ</span>
+  </a>
+</div>

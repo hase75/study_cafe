@@ -26,8 +26,8 @@ function initMap(){
     var infoWindow<%= i %> = new google.maps.InfoWindow({
       position: latLng,
       content: `
-      <div class="card" style="width: 14rem;">
-        <%=j image_tag space.get_image, class: "mx-2 mt-2 rounded" %>
+      <div class="card" style="width:14rem;">
+        <%=j image_tag space.image[0], class: "mx-2 mt-2 rounded" %>
         <div class="card-body">
           <h5 class="card-title"><%=j space.name %></div>
           <p class="card-text mx-2"><%=j space.introduction.truncate(50) %></p>
