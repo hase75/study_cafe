@@ -11,9 +11,9 @@
   <div class="carousel-inner carousel-fade">
     <% space.image.each.with_index do |image, index| %>
       <% if index == 0 %>
-        <div class="carousel-item active"><%= image_tag image.variant(resize: "500x500"), class: "d-block w-100 rounded" %></div>
+        <div class="carousel-item active"><%= image_tag image.variant(resize: "300x300"), class: "d-block w-100 rounded" %></div>
       <% else %>
-        <div class="carousel-item"><%= image_tag image.variant(resize: "500x500"), class: "d-block w-100 rounded" %></div>
+        <div class="carousel-item"><%= image_tag image.variant(resize: "300x300"), class: "d-block w-100 rounded" %></div>
       <% end %>
     <% end %>
   </div>

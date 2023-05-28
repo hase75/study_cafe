@@ -8,8 +8,53 @@
         <%= link_to space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none" do %>
           <%= image_tag space.image[0].variant(resize: "300x300"), size: '250x200', class: "rounded"%>
         <% end %>
-        <%= link_to space.name,admin_space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold d-flex align-items-center justify-content-start" %>
-        <p>評価: <%= space.average_rating %></p> 
+        <i class="far fa-heart" style="color: #FF6699;"></i><%= space.favorites.count %>
+        <%= link_to space.name,space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold d-flex align-items-center justify-content-start" %>
+        <h6 class="mt-2 text-danger font-weight-bold">
+          <div id="rating-rate<%= space.id %>"></div>
+            <script>
+              $('#rating-rate<%= space.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= space.average_rating || 0 %>,
+                half: true
+              });
+            </script>
+            <%= space.average_rating %>
+        </h6>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h5 class="font-weight-bold"><i class="fa-regular fa-star"></i>保存数の多い店舗</h5>
+  </div>
+  <div class="row border-top border-dark">
+    <% @spaces.each do |space| %>
+      <div class="col-lg-3 my-3">
+        <%= link_to space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none" do %>
+          <%= image_tag space.image[0].variant(resize: "300x300"), size: '250x200', class: "rounded"%>
+        <% end %>
+        <i class="far fa-heart" style="color: #FF6699;"></i><%= space.favorites.count %>
+        <%= link_to space.name,space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold d-flex align-items-center justify-content-start" %>
+        <h6 class="mt-2 text-danger font-weight-bold">
+          <div id="rating-rate<%= space.id %>"></div>
+            <script>
+              $('#rating-rate<%= space.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= space.average_rating || 0 %>,
+                half: true
+              });
+            </script>
+            <%= space.average_rating %>
+        </h6>
       </div>
     <% end %>
   </div>

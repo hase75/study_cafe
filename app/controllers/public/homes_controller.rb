@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
-  
+
   def top
-    @spaces = Space.order(average_rating: :desc).limit(4)
+    @spaces = Space.all.includes(:reviews).sort_by(&:average_rating).reverse.first(4)
   end
-  
+
 end

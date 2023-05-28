@@ -162,19 +162,21 @@
       <% @reviews.each do |review|%>
         <div class=card>
           <h6 class="pt-3 ml-3"><%= review.customer.name %></h6>
-          <h5 class="mt-2 text-danger font-weight-bold ml-3"><%= review.rating %></h5>
-          <div class="ml-3", id="rating-rate<%= review.id %>"></div>
-          <script>
-            $('#rating-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf  : '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= review.rating || 0 %>,
-              half: true
-            });
-          </script>
+          <h6 class="mt-2 text-danger font-weight-bold ml-3">
+            <%= review.rating %>
+            <div id="rating-rate<%= review.id %>"></div>
+            <script>
+              $('#rating-rate<%= review.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf  : '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= review.rating || 0 %>,
+                half: true
+              });
+            </script>
+          </h6>
           <p class="mt-4 ml-3"><%= review.comment %></p>
           <%= link_to '投稿を削除', admin_review_path(review.id),method: :delete, data: { confirm: '本当にいいですか?' }, class: "text-danger pb-3 ml-3 text-decoration-none"%>
         </div>
