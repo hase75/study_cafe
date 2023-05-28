@@ -6,7 +6,11 @@
     <% @spaces.each do |space| %>
       <div class="col-lg-3 my-3">
         <%= link_to space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none" do %>
-          <%= image_tag space.image[0].variant(resize: "300x300"), size: '250x200', class: "rounded"%>
+          <div class="w-100">
+          <% if space.images.attached? %>
+            <%= image_tag space.images[0].variant(resize: "300x300"), size: '250x200', class: "rounded"%>
+          <% end %>
+          </div>
         <% end %>
         <%= link_to space.name,space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold d-flex align-items-center justify-content-start mt-2" %>
         <h6 class="mt-2 text-danger font-weight-bold">

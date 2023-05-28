@@ -28,14 +28,14 @@ class Space < ApplicationRecord
     end
   end
 
-  has_many_attached :image
+  has_many_attached :images
 
-  def get_image
-    unless image.attached?
+  def get_images
+    unless images.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      images.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image
+    images
   end
 
 
@@ -44,7 +44,7 @@ class Space < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["favorites", "genre", "image_attachment", "image_blob", "reviews", "space_tags"]
+    ["favorites", "genre", "images_attachment", "images_blob", "reviews", "space_tags"]
   end
 
 
