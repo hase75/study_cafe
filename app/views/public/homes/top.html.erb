@@ -1,3 +1,16 @@
-<h1>トップページ</h1>
-  
- 
+<div class="container my-5">
+  <div>
+    <h5 class="font-weight-bold"><i class="fa-regular fa-star"></i>評価の高い店舗</h5>
+  </div>
+  <div class="row border-top border-dark">
+    <% @spaces.each do |space| %>
+      <div class="col-lg-3 my-3">
+        <%= link_to space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none" do %>
+          <%= image_tag space.image[0].variant(resize: "300x300"), size: '250x200', class: "rounded"%>
+        <% end %>
+        <%= link_to space.name,admin_space_path(space.id), data: {"turbolinks"=>false}, class:"text-decoration-none font-weight-bold d-flex align-items-center justify-content-start" %>
+        <p>評価: <%= space.average_rating %></p> 
+      </div>
+    <% end %>
+  </div>
+</div>
