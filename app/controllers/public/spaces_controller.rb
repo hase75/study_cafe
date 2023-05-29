@@ -1,5 +1,7 @@
 class Public::SpacesController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def index
     @q = Space.ransack(params[:q])
     if params[:keyword]

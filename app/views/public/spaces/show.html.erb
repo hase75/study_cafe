@@ -20,12 +20,12 @@
     </div>
     <div class="my-3 ml-5">
       <% if current_customer.already_favorited?(@space) %>
-        <%= link_to space_favorite_path(@space), method: :delete do %>
+        <%= link_to space_favorites_path(@space.id), method: :delete do %>
           <i class="fas fa-heart fa-2x" style="color: #FF6699;"></i>
         <% end %>
         <%= @space.favorites.count %>
       <% else %>
-        <%= link_to space_favorites_path(@space), method: :post do %>
+        <%= link_to space_favorites_path(@space.id), method: :post do %>
           <i class="far fa-heart fa-2x" style="color: #FF6699;"></i>
         <% end %>
         <%= @space.favorites.count %>

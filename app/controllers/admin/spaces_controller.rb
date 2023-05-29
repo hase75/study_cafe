@@ -16,8 +16,7 @@ class Admin::SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     if @space.save
-      flash[:notice] = "登録しました"
-      redirect_to admin_spaces_path
+      redirect_to admin_spaces_path, notice: "登録しました"
     else
       flash.now[:alert] = "登録に失敗しました"
       render :new
@@ -36,8 +35,7 @@ class Admin::SpacesController < ApplicationController
   def update
     @space = Space.find(params[:id])
     if @space.update(space_params)
-      flash[:notice] = "更新しました"
-      redirect_to admin_spaces_path
+      redirect_to admin_spaces_path, notice: "更新しました"
     else
       flash.now[:alert] = "更新に失敗しました"
       render :edit

@@ -1,5 +1,7 @@
 class Public::ReviewsController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def new
     @space_id = params[:space_id]
     review = Review.where(customer_id: current_customer.id, space_id: @space_id)
@@ -14,10 +16,10 @@ class Public::ReviewsController < ApplicationController
     @review = current_customer.reviews.build(review_params)
     @space = @review.space
     if @review.save
-      flash[:notice] = "登録しました"
-      redirect_to @space
+      redirect_to @space, notice: "登録しました"
     else
       flash.now[:alert] = "登録に失敗しました"
+      @reviews = @space.reviews
       render 'public/spaces/show'
     end
   end
@@ -26,10 +28,10 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @space = @review.space
     if @review.update(review_params)
-      flash[:notice] = "更新しました"
-      redirect_to @space
+      redirect_to @space, notice: "更新しました"
     else
       flash.now[:alert] = "更新に失敗しました"
+      @reviews = @space.reviews
       render 'public/spaces/show'
     end
   end

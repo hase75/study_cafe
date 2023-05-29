@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -17,16 +17,16 @@ Rails.application.routes.draw do
     get 'customers/confirm', to: 'customers#confirm'
     patch 'customers/withdraw', to: 'customers#withdraw'
     resources :spaces, only: [:index, :show] do
-      resources :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :favorites, only: [:index]
     resources :reviews, only: [:new, :create, :update, :destroy]
   end
-  
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
+
   namespace :admin do
     root to: 'customers#index'
     resources :spaces, only: [:index, :new, :create, :show, :edit, :update]
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :reviews, only: [:destroy]
   end
-  
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
