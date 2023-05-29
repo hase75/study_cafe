@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  
+
   # before_action :configure_sign_in_params, only: [:create]
   before_action :customer_state, only: [:create]
 
@@ -19,7 +19,7 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-  
+
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
@@ -32,7 +32,7 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   def customer_state
     customer = Customer.find_by(email: params[:customer][:email])
     if customer
