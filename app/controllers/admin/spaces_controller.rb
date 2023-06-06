@@ -1,4 +1,6 @@
 class Admin::SpacesController < ApplicationController
+  
+  before_action :authenticate_admin!
 
   def index
     @q = Space.ransack(params[:q])
