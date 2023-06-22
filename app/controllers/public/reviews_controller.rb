@@ -38,7 +38,9 @@ class Public::ReviewsController < ApplicationController
 
   def destroy
     review = Review.find(params[:id])
-    review.destroy
+    if review.customer_id == current_customer.id
+       review.destroy
+    end
     redirect_to space_path(review.space.id)
   end
 
