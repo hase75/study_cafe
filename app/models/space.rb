@@ -11,6 +11,8 @@ class Space < ApplicationRecord
   validates :telephone_number, presence: true
   validates :website, presence: true
   validates :transportation, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   def favorited_by?(customer)
     favorites.where(customer_id: customer).exists?
