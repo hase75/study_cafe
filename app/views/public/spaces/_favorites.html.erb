@@ -1,0 +1,11 @@
+<% if current_customer.already_favorited?(space) %>
+  <%= link_to space_favorites_path(space.id), method: :delete, remote: true do %>
+    <i class="fas fa-heart fa-2x" style="color: #FF6699;"></i>
+  <% end %>
+  <%= space.favorites.count %>
+<% else %>
+  <%= link_to space_favorites_path(space.id), method: :post, remote: true do %>
+    <i class="far fa-heart fa-2x" style="color: #FF6699;"></i>
+  <% end %>
+  <%= space.favorites.count %>
+<% end %>
