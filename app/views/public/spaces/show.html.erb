@@ -19,8 +19,8 @@
         </script>
     </div>
     <div class="my-3 ml-5">
-      <div id="favorite_buttons_<%= space.id %>">
-        <%= render "public/spaces/favorite", space: @space %>
+      <div id="favorite_buttons_<%= @space.id %>">
+        <%= render "public/spaces/favorites", space: @space %>
       </div>
     </div>
   </div>
