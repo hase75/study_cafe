@@ -1,8 +1,10 @@
+<!--管理者の店舗詳細画面-->
+
 <div class="container my-5">
 
   <div class="row">
     <h1 class="font-weight-bold pl-3"><%= @space.name %></h1>
-
+    
     <div class="mb-4 ml-5">
       <h4 class="mt-2 text-danger font-weight-bold"><%= @space.average_rating %></h4>
       <div id="rating-rate<%= @space.id %>"></div>
@@ -23,8 +25,10 @@
     </div>
   </div>
 
+  <!--店舗設備-->
   <div class="row">
     <div class="col-lg-7">
+      <!--画像スライドの部分テンプレート-->
       <%= render 'admin/spaces/image', space: @space, url: admin_spaces_path %>
       <p class="mt-5"><%= @space.introduction %></p>
     </div>
@@ -86,6 +90,7 @@
     </div>
   </div>
 
+  <!--店舗基本情報-->
   <div class="row">
     <div class="col-10">
       <h5 class="font-weight-bold mt-5 mb-3">店舗基本情報</h5>
@@ -104,7 +109,6 @@
                 </style>
                 <script>
                 let map
-
                 function initMap(){
                   geocoder = new google.maps.Geocoder()
 
@@ -113,25 +117,25 @@
                     zoom: 16,
                   });
 
-                   marker = new google.maps.Marker({
+                  marker = new google.maps.Marker({
                     position:  {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
                     map: map
                   });
 
-                 var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
-                 infoWindow = new google.maps.InfoWindow({
-                  position: latLng,
-                  content: `
-                  <div>
-                    <h6><%=j @space.name %></h6>
-                    <%=j @space.address %>
-                  </div>
-                  `
-                });
-                marker.addListener('click', () => {
-                  infoWindow.open(map, marker);
-                });
-               }
+                  var latLng = {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+                  infoWindow = new google.maps.InfoWindow({
+                    position: latLng,
+                    content: `
+                    <div>
+                      <h6><%=j @space.name %></h6>
+                      <%=j @space.address %>
+                    </div>
+                    `
+                  });
+                  marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                  });
+                }
                 </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API']%>&callback=initMap" async defer></script>
               </td>
@@ -157,6 +161,7 @@
     </div>
   </div>
 
+  <!--レビュー-->
   <div class="row">
     <div class="col-lg-10 mt-5 pt-5">
       <% @reviews.each do |review|%>

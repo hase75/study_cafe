@@ -1,3 +1,5 @@
+<!--管理者の店舗一覧の位置情報-->
+
 <div id='map'></div>
 <style>
 #map {
@@ -7,15 +9,13 @@
 </style>
 <script>
 let map
-
 function initMap(){
   geocoder = new google.maps.Geocoder()
-
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat:35.6815472961328, lng:139.76909301923038},
     zoom: 11,
   });
-
+  
   <% spaces.each_with_index do |space, i| %>
     var latLng = {lat: <%= space.latitude %>, lng:<%= space.longitude %>}
     var marker<%= i %> = new google.maps.Marker({

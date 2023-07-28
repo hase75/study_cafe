@@ -1,3 +1,5 @@
+<!--管理者の店舗編集画面-->
+
 <div class="container my-5">
   <div class="row">
 
@@ -9,6 +11,7 @@
       </div>
 
       <%= form_with model: @space, url:admin_space_path do |f| %>
+       <!--エラーメッセージの部分テンプレート-->
        <%= render 'layouts/error_messages', model: f.object %>
       <div class="row">
         <div class="col-10">
@@ -109,35 +112,28 @@
       <% end %>
     </div>
 
+    <!--位置情報-->
     <div class="col-5">
       <div id='map'></div>
-
       <style>
       #map {
         height: 450px;
         width: 450px;
       }
       </style>
-
       <script>
       let map
-
       function initMap(){
         geocoder = new google.maps.Geocoder()
-
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat:35.6815472961328, lng:139.76909301923038},
           zoom: 15,
         });
-
       }
 
       let geocoder
-
       function codeAddress(){
         let inputAddress = document.getElementById('space_address').value;
-
-
         geocoder.geocode( { 'address': inputAddress}, function(results, status) {
           if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
@@ -145,14 +141,8 @@
                 map: map,
                 position: results[0].geometry.location
             });
-
             document.getElementById('space_latitude').value = results[0].geometry.location.lat();
             document.getElementById('space_longitude').value = results[0].geometry.location.lng();
-
-            // console.log(results[0].geometry.location);
-            // console.log(results[0].geometry.location.lat());
-            // console.log(results[0].geometry.location.lng());
-
           } else {
             alert('該当する結果がありませんでした：' + status);
           }

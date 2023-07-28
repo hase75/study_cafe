@@ -1,8 +1,11 @@
+<!--管理者の店舗一覧画面-->
+
 <div class="container my-5">
   <div class="row">
 
     <div class="col-3 pr-5">
       <div class= "sidebar_fixed">
+        <!--詳細検索の部分テンプレート-->
         <%= render 'admin/spaces/searchform', q: @q, url: admin_spaces_path %>
       </div>
     </div>
@@ -13,12 +16,14 @@
           <h3 class="font-weight-bold mb-4">店舗一覧</h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
+          <!--店舗新規登録ボタン-->
           <%= link_to "+", new_admin_space_path, data: {"turbolinks"=>false}, class: "btn btn-lg rounded-circle text-right shadow mb-3 " %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
+          <!--位置情報の部分テンプレート-->
           <%= render 'admin/spaces/map', spaces: @spaces, url: admin_spaces_path %>
         </div>
       </div>
@@ -71,7 +76,7 @@
           </table>
         </div>
       </div>
-
+      <!--ページネーション-->
       <div class="row d-flex align-items-center justify-content-center">
   	    <div class="mt-5">
   	      <%= paginate @spaces %>
