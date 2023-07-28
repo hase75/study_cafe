@@ -1,3 +1,5 @@
+<!--ユーザーの店舗検索画面の位置情報-->
+
 <div id='map'></div>
 <style>
 #map {
@@ -7,7 +9,6 @@
 </style>
 <script>
 let map
-
 function initMap(){
   geocoder = new google.maps.Geocoder()
 
@@ -36,6 +37,7 @@ function initMap(){
       </div>
       `
     });
+    
     marker<%= i %>.addListener('click', () => {
       infoWindow<%= i %>.open(map, marker<%= i %>);
     });

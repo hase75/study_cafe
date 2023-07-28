@@ -1,3 +1,5 @@
+<!--ユーザーのキーワード検索-->
+
 <div class="search_form">
   <%= form_with url: spaces_path, local: true, method: :get do |f| %>
     <%= f.text_field :keyword, placeholder: 'キーワードから探す' %>

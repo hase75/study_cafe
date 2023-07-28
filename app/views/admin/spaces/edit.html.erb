@@ -13,102 +13,103 @@
       <%= form_with model: @space, url:admin_space_path do |f| %>
        <!--エラーメッセージの部分テンプレート-->
        <%= render 'layouts/error_messages', model: f.object %>
-      <div class="row">
-        <div class="col-10">
-          <div class="form-group">
-            <%= f.label :images, "店舗画像" %>
-            <p><%= f.file_field :images, multiple:true, accept: "image/*" %></p>
-          </div>
-          <div class="form-group">
-            <%= f.label :name, "店舗名" %>
-            <%= f.text_field :name, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :introduction, "店舗紹介文" %>
-            <%= f.text_area :introduction, :size=>"10x10", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :genre_id, "ジャンル" %>
-            <%= f.collection_select :genre_id, Genre.all, :id, :name, option = {include_blank: '--選択してください--'}, class: "form-control col-6" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :address, "住所" %>
-            <%= f.text_field :address, class: "form-control" %>
-            <input type="button" value="緯度経度を特定" onclick="codeAddress()", class= "btn-info rounded">
-          </div>
-          <div class="form-group">
-            <%= f.label :latitude, "緯度" %>
-            <%= f.text_field :latitude, class: "form-control col-6" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :longitude, "経度" %>
-            <%= f.text_field :longitude, class: "form-control col-6" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :telephone_number, "電話番号" %>
-            <%= f.text_field :telephone_number, class: "form-control col-6" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :transportation, "交通手段" %>
-            <%= f.text_area :transportation, :size=>"10x5", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :website, "WEBサイトURL" %>
-            <%= f.text_field :website, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :business_hours, "営業時間" %>
-            <%= f.time_select :start_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
-            <%= f.time_select :end_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
-          </div>
-          <div class="form-group">
-            <%= f.label :private_room, "個室" %>
-            <%= f.radio_button :private_room, true %>
-            <%= f.label :private_room, '有' %>
-            <%= f.radio_button :private_room, false %>
-            <%= f.label :private_room, '無' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :smoking, "喫煙・喫煙" %>
-            <%= f.radio_button :smoking, true %>
-            <%= f.label :smoking, '喫煙可' %>
-            <%= f.radio_button :smoking, false %>
-            <%= f.label :smoking, '禁煙' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :parking, "駐車場" %>
-            <%= f.radio_button :parking, true %>
-            <%= f.label :parking, '有' %>
-            <%= f.radio_button :parking, false %>
-            <%= f.label :parking, '無' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :wifi, "Wi-Fi" %>
-            <%= f.radio_button :wifi, true %>
-            <%= f.label :wifi, '有' %>
-            <%= f.radio_button :wifi, false %>
-            <%= f.label :wifi, '無' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :outlet, "コンセント" %>
-            <%= f.radio_button :outlet, true %>
-            <%= f.label :outlet, '有' %>
-            <%= f.radio_button :outlet, false %>
-            <%= f.label :outlet, '無' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :is_active, "店舗ステータス" %>
-            <%= f.radio_button :is_active, true %>
-            <%= f.label :is_active, '有効' %>
-            <%= f.radio_button :is_active, false %>
-            <%= f.label :is_active, '閉店' %>
-          </div>
-          <div class="form-group row">
-            <%= f.submit '変更を保存', class: "btn btn-success mt-3" %>
-            <%= link_to "戻る", admin_space_path, class: "btn btn-secondary ml-3 mt-3"%>
+       
+        <div class="row">
+          <div class="col-10">
+            <div class="form-group">
+              <%= f.label :images, "店舗画像" %>
+              <p><%= f.file_field :images, multiple:true, accept: "image/*" %></p>
+            </div>
+            <div class="form-group">
+              <%= f.label :name, "店舗名" %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :introduction, "店舗紹介文" %>
+              <%= f.text_area :introduction, :size=>"10x10", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :genre_id, "ジャンル" %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, option = {include_blank: '--選択してください--'}, class: "form-control col-6" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :address, "住所" %>
+              <%= f.text_field :address, class: "form-control" %>
+              <input type="button" value="緯度経度を特定" onclick="codeAddress()", class= "btn-info rounded">
+            </div>
+            <div class="form-group">
+              <%= f.label :latitude, "緯度" %>
+              <%= f.text_field :latitude, class: "form-control col-6" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :longitude, "経度" %>
+              <%= f.text_field :longitude, class: "form-control col-6" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :telephone_number, "電話番号" %>
+              <%= f.text_field :telephone_number, class: "form-control col-6" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :transportation, "交通手段" %>
+              <%= f.text_area :transportation, :size=>"10x5", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :website, "WEBサイトURL" %>
+              <%= f.text_field :website, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :business_hours, "営業時間" %>
+              <%= f.time_select :start_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
+              <%= f.time_select :end_time, {minute_step: 15, default: {hour: 0, minute: 0}} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :private_room, "個室" %>
+              <%= f.radio_button :private_room, true %>
+              <%= f.label :private_room, '有' %>
+              <%= f.radio_button :private_room, false %>
+              <%= f.label :private_room, '無' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :smoking, "喫煙・喫煙" %>
+              <%= f.radio_button :smoking, true %>
+              <%= f.label :smoking, '喫煙可' %>
+              <%= f.radio_button :smoking, false %>
+              <%= f.label :smoking, '禁煙' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :parking, "駐車場" %>
+              <%= f.radio_button :parking, true %>
+              <%= f.label :parking, '有' %>
+              <%= f.radio_button :parking, false %>
+              <%= f.label :parking, '無' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :wifi, "Wi-Fi" %>
+              <%= f.radio_button :wifi, true %>
+              <%= f.label :wifi, '有' %>
+              <%= f.radio_button :wifi, false %>
+              <%= f.label :wifi, '無' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :outlet, "コンセント" %>
+              <%= f.radio_button :outlet, true %>
+              <%= f.label :outlet, '有' %>
+              <%= f.radio_button :outlet, false %>
+              <%= f.label :outlet, '無' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :is_active, "店舗ステータス" %>
+              <%= f.radio_button :is_active, true %>
+              <%= f.label :is_active, '有効' %>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, '閉店' %>
+            </div>
+            <div class="form-group row">
+              <%= f.submit '変更を保存', class: "btn btn-success mt-3" %>
+              <%= link_to "戻る", admin_space_path, class: "btn btn-secondary ml-3 mt-3"%>
+            </div>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
 

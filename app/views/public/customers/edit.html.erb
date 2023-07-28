@@ -1,10 +1,13 @@
+<!--ユーザーの会員情報編集画面-->
+
 <div class="container my-5">
   <div class="row">
     <div class="col-lg-6 mx-auto">
       <h3 class="font-weight-bold mb-5">会員情報編集</h3>
       <%= form_with model: @customer, url:customers_information_path do |f| %>
+        <!--エラーメッセージの部分テンプレート-->
         <%= render 'layouts/error_messages', model: f.object %>
-
+        
         <div class="form-group">
           <p>ユーザー名</p>
           <%= f.text_field :name %>

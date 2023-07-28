@@ -1,3 +1,5 @@
+<!--ユーザーの店舗詳細画面-->
+
 <div class="container my-5">
 
   <div class="row">
@@ -20,13 +22,16 @@
     </div>
     <div class="my-3 ml-5">
       <div id="favorite_buttons_<%= @space.id %>">
+        <!--お気に入り登録の部分テンプレート-->
         <%= render "public/spaces/favorites", space: @space %>
       </div>
     </div>
   </div>
-
+  
+  <!--店舗設備-->
   <div class="row">
     <div class="col-lg-7">
+      <!--画像スライドの部分テンプレート-->
       <%= render 'public/spaces/image', space: @space, url: admin_spaces_path %>
       <p class="mt-5"><%= @space.introduction %></p>
     </div>
@@ -87,7 +92,8 @@
         </table>
     </div>
   </div>
-
+  
+  <!--店舗基本情報-->
   <div class="row">
     <div class="col-10">
       <h5 class="font-weight-bold mt-5 mb-3">店舗基本情報</h5>
@@ -107,7 +113,6 @@
                 </style>
                 <script>
                 let map
-
                 function initMap(){
                   geocoder = new google.maps.Geocoder()
 
@@ -160,7 +165,8 @@
       </div>
     </div>
   </div>
-
+  
+  <!--レビュー-->
   <div class="row">
     <div class="col-lg-10 mt-5 pt-5">
       <div>
