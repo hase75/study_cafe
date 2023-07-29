@@ -32,7 +32,7 @@
 https://docs.google.com/spreadsheets/d/1tVjAM8E0Tz1cALfF6IVzGg15McBeNScuuYeJvA0lTFQ/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux2(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
